@@ -24,6 +24,7 @@ Note that there are many many useful libraries that have not yet been copied her
  * Date formatting (https://github.com/buzzwashere/js_utilities)
  * https://github.com/alexbech/JsUtils
  * GUID/rand (https://github.com/shezard/js_utils)
+ * http://www.3site.eu/JSL/
 
 ## License
 
