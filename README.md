@@ -1,5 +1,7 @@
 # Standard JavaScript Library
 
+## Mission
+
 > A standard library for a programming language is the library that is conventionally made available in every implementation of that language. In some cases, the library is described directly in the programming language specification; in other cases, the contents of the standard library are determined by more informal social practices in the programming community.
 
 -[Wikipedia](http://en.wikipedia.org/wiki/Standard_library)
@@ -8,9 +10,19 @@ Most programming languages come with standard libraries. JavaScript does not. Or
 
 With [CommonJS](http://www.commonjs.org/), some of this can be fixed. While we're figuring that out, there's this.
 
+We do *not* want to replace:
+
+ * jQuery/Dojo/ExtJS
+ * JavaScript 1.6
+ * HTML5
+ 
+If something is available in one of the major libraries, it's probably best to use it there unless it's something that was used to patch a weakness in JavaScript (some of the jQuery functionality falls into this category).
+
+This is a work in progress.
+
 ## Organization
 
-Standard-js is built to be modular - use what you need, throw out what you don't. We specifically do *not* want to replace jQuery, JavaScript 1.6, or HTML5; if something is available in one of the major libraries it should be used there.
+Standard-js is built to be modular - use what you need, throw out what you don't.
 
  * core/ - core is designed to include primary JS functionality
  * browser/ - browser specific code - DOM stuff and the like

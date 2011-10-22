@@ -1,0 +1,9 @@
+General script rules:
+0) All of these rules are optional. But you must comment if you are breaking them.
+1) No loops, ever. Except in Core/
+2) No DOM manipulation, ever. Except in Views/
+3) No touching the server, ever. Except in Models/
+4) Internal scope functions start with underscores, to highlight their hiddenness. The widest scope is always capitalized, to highlight its wideness.
+5) Consistency over improvement. If you're going to improve something, improve it all at once. Consistent code can be auto-refactored, partially improved code cannot.
+6) Core functions cannot have any dependencies, aside from jQuery.
+7) Hungarian notation: all parameters to a function begin with p. Why? A consistent solution to the reserved words problem (we use the word class a lot), as well as a clear indication of scope.
