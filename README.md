@@ -16,12 +16,14 @@ Standard-js is built to be modular - use what you need, throw out what you don't
  * browser/ - browser specific code - DOM stuff and the like
  * etc/ - additional functionality
 
-Note that there are many many useful libraries that have not yet been copied here.
+Note that there are many many useful libraries that have not yet been copied here. This list was everything of use I found on GitHub, last I checked (standard stuff only, no DOM-specific stuff).
 
  * sprintf
  * Log/extend (https://github.com/msmtd/js-utils/)
  * Array comprehension stuff (https://github.com/adambossy/js-utils)
  * Date formatting (https://github.com/buzzwashere/js_utilities)
+ * https://github.com/alexbech/JsUtils
+ * GUID/rand (https://github.com/shezard/js_utils)
 
 ## License
 
