@@ -23,6 +23,10 @@ If something is available in one of the major libraries, it's probably best to u
 
 This is a work in progress.
 
+## How to use
+
+Download the full library. Only use the scripts you need. Voila!
+
 ## Organization
 
 Standard-js is built to be modular - use what you need, throw out what you don't.
