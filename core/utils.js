@@ -10,3 +10,14 @@ Utils.GenerateRandomInteger = function(min, max) {
 //Quick-and-dirty function to test if word is plural, not always accurate. Depends on EndsWith.
 Utils.IsPlural = function(word) {
     return Utils.EndsWith(word, 's'); }
+/**
+Similar to Array.prototype.map construct, but for Objects. Only includes
+properties of the object itself, and not its prototypes.
+*/
+Utils.ForEachOwnProperty = function(obj, testFunction) {
+    for(var propertyName in obj) {
+        if(obj.hasOwnProperty(propertyName)) {
+            testFunction(propertyName, obj[propertyName]);
+        }
+    }
+};
