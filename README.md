@@ -12,7 +12,7 @@
 
 Most programming languages come with standard libraries. JavaScript does not. Or at least, the one it has is very limited.
 
-With [CommonJS](http://www.commonjs.org/), and JavaScript 1.6, some of this can be fixed. While standards committees hash that out, there's this.
+With [CommonJS](http://www.commonjs.org/) and [JavaScript 1.6](http://en.wikipedia.org/wiki/JavaScript#Versions), some of this can be fixed. While standards committees hash that out, there's this.
 
 We do *not* want to replace:
 
