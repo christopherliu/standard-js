@@ -38,7 +38,7 @@ Gaming.RollDice = function(numberOfDice, sides) {
         diceRolls.push(new Gaming.DiceRoll(sides));
     }
     diceRolls.getValue = function() {
-        return sum($.map(diceRolls, function(roll) { return roll.getValue(); }));
+        return Math.sum($.map(diceRolls, function(roll) { return roll.getValue(); }));
     };
     return diceRolls;
 };
@@ -48,4 +48,3 @@ Gaming.TestDice = function() {
     var mySpeedRoll = myDie.getValue();
     alert(mySpeedRoll);
 };
-Gaming.TestDice();
