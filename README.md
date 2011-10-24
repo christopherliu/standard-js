@@ -10,9 +10,11 @@
 
 -[Wikipedia](http://en.wikipedia.org/wiki/Standard_library)
 
-Most programming languages come with standard libraries. JavaScript does not. Or at least, the one it has is very limited.
+Most programming languages come with standard libraries. JavaScript does not. Or at least, the one it has is very limited. Why, for example, can't you write this?
 
-With [CommonJS](http://www.commonjs.org/) and [JavaScript 1.6](http://en.wikipedia.org/wiki/JavaScript#Versions), some of this can be fixed. While standards committees hash that out, there's this.
+    var numbersSquared = [3,4,5].map(function(num) { return num*num; });
+
+Well, with [CommonJS](http://www.commonjs.org/) and [JavaScript 1.6](http://en.wikipedia.org/wiki/JavaScript#Versions), you can. While browser makers (read: IE) work on implementing that and standards committees hash that out, there's this.
 
 We do *not* want to replace:
 
