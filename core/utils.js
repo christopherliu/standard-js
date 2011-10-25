@@ -21,3 +21,15 @@ Utils.ForEachOwnProperty = function(obj, testFunction) {
         }
     }
 };
+/**
+Returns an array that only contains the unique items in the array. Uniqueness
+is determined by a key that is calculated for each item in the array.
+*/
+Utils.Unique = function(ar, keyFunction) {
+    var _keys = {};
+    return ar.filter(function(item) {
+        if(_keys[keyFunction(item)]) return false;
+        else _keys[keyFunction(item)] = true;
+        return true;
+    });
+};
