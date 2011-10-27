@@ -33,7 +33,7 @@ Download the full library. Only use the scripts you need. Voila!
 
 Standard-js is built to be modular - use what you need, throw out what you don't.
 
- * core/ - core is designed to include primary JS functionality
+ * core/ - core is designed to include primary JS functionality, including JavaScript 1.6
  * browser/ - browser specific code - DOM stuff and the like
  * etc/ - additional functionality
 
@@ -45,13 +45,13 @@ Here are links to the other stuff I use in many of my projects:
  * [jQote - templating for Javascript](https://github.com/aefxx/jQote2)
 
 This additional list was everything of use I found on GitHub, last I checked (standard stuff only, no DOM-specific stuff).
+
  * Log/extend (https://github.com/msmtd/js-utils/)
  * Array comprehension stuff (https://github.com/adambossy/js-utils)
  * Date formatting (https://github.com/buzzwashere/js_utilities)
  * https://github.com/alexbech/JsUtils
  * GUID/rand (https://github.com/shezard/js_utils)
  * http://www.3site.eu/JSL/
- * Full Javascript 1.6 support for browsers without it.
 
 ## License
 
