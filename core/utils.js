@@ -22,6 +22,15 @@ Utils.ForEachOwnProperty = function(obj, testFunction) {
     }
 };
 /**
+Removes an element, or set of elements, from within an array
+*/
+// Array Remove - By John Resig (MIT Licensed)
+Utils.Remove = function(array, from, to) {
+  var rest = array.slice((to || from) + 1 || array.length);
+  array.length = from < 0 ? array.length + from : from;
+  return array.push.apply(array, rest);
+};
+/**
 Returns an array that only contains the unique items in the array. Uniqueness
 is determined by a key that is calculated for each item in the array.
 */
