@@ -19,7 +19,7 @@ Well, with [CommonJS](http://www.commonjs.org/) and [JavaScript 1.6](http://en.w
 We do *not* want to replace:
 
  * jQuery/Dojo/ExtJS (just get jQuery/Dojo/ExtJS)
- * HTML5 ([Modernizr](http://modernizr.com/) does this perfectly well).
+ * HTML5 ([Modernizr](http://modernizr.com/), [CSS3PIE](http://css3pie.com) and other libraries can help here).
  
 If something is available in one of the major libraries, it's probably best to use it there unless it's something that was used to patch a weakness in JavaScript (some of the jQuery functionality falls into this category).
 
