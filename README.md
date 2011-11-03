@@ -1,5 +1,8 @@
 # Standard JavaScript Library
 
+From https://github.com/christopherliu/standard-js
+
+
 ## Mission
 
 > Standard-js is designed to add support for the most commonly used functions that are not always supported in every implementation of JavaScript.
