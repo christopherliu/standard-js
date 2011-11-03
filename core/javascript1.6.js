@@ -114,7 +114,7 @@ if ( !Array.prototype.forEach ) {
     }
 
     // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
-    var O = Object(this)Q;
+    var O = Object(this);
 
     // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
     // 3. Let len be ToUint32(lenValue).
