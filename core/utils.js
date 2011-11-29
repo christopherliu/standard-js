@@ -42,3 +42,17 @@ Utils.Unique = function(ar, keyFunction) {
         return true;
     });
 };
+/**
+Splits a string by regexp without including capturing groups in the result.
+
+See the following for more context:
+http://blog.getify.com/2010/11/to-capture-or-not/
+*/
+Utils.SplitWithoutCapture = function (str, split) {
+	return str.split(
+		new RegExp(split.source.replace(/\(([^?].*?)\)/g, "(?:$1)"))
+	);
+};
+Utils.StartsWith = function (me, str){
+	return me.slice(0, str.length) == str;
+};
