@@ -48,6 +48,7 @@ Here are links to the other stuff I use in many of my projects:
  * [jQote - templating for Javascript](https://github.com/aefxx/jQote2)
  * [XRegExp - support for multiline regex, capturing groups, and more](http://xregexp.com/)
  * [Underscore.js](http://documentcloud.github.com/underscore/#isEqual)
+ * [JSON](https://github.com/douglascrockford/JSON-js)
 
 This additional list was everything of use I found on GitHub, last I checked (standard stuff only, no DOM-specific stuff).
 
