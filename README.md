@@ -58,6 +58,10 @@ This additional list was everything of use I found on GitHub, last I checked (st
  * https://github.com/alexbech/JsUtils
  * GUID/rand (https://github.com/shezard/js_utils)
  * http://www.3site.eu/JSL/
+ 
+## TODO
+ * Mention compressors
+ * Mention dependency loaders
 
 ## License
 
