@@ -49,6 +49,7 @@ Here are links to the other stuff I use in many of my projects:
  * [XRegExp - support for multiline regex, capturing groups, and more](http://xregexp.com/)
  * [Underscore.js](http://documentcloud.github.com/underscore/#isEqual)
  * [JSON](https://github.com/douglascrockford/JSON-js)
+ * [List of shims and polyfills (implement functionality in old browsers)](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills)
 
 This additional list was everything of use I found on GitHub, last I checked (standard stuff only, no DOM-specific stuff).
 
