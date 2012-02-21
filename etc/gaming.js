@@ -1,3 +1,8 @@
+/**
+Dependencies:
+	Utils
+	Math
+*/
 if (!Gaming)
     var Gaming = {};
 /**
@@ -38,7 +43,7 @@ Gaming.RollDice = function(numberOfDice, sides) {
         diceRolls.push(new Gaming.DiceRoll(sides));
     }
     diceRolls.getValue = function() {
-        return Math.sum($.map(diceRolls, function(roll) { return roll.getValue(); }));
+        return Math.sum(diceRolls.map(function(roll) { return roll.getValue(); }));
     };
     return diceRolls;
 };

@@ -12,7 +12,7 @@ function Event (eventName) {
 						+ "("
 						+ Array.prototype.join(arguments, [","]) + ")");//Find way to do universally.
 				}
-				_eventHandler.apply(this,arguments);
+				return _eventHandler.apply(this, arguments);
 			}
 		},
 		"Set" : function(handler) {

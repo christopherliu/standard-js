@@ -56,3 +56,15 @@ Utils.SplitWithoutCapture = function (str, split) {
 Utils.StartsWith = function (me, str){
 	return me.slice(0, str.length) == str;
 };
+/**
+Similar to Array.prototype.some, but returns the first element that satisfies
+the finding function, or false if none found.
+*/
+Utils.FindFirst = function(ar, findFunction) {
+	for(var i = 0, len = ar.length; i < len; i++) {
+		if(findFunction(ar[i])) {
+			return ar[i];
+		}
+	}
+	return false;
+}
