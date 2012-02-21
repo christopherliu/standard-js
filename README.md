@@ -47,6 +47,9 @@ Here are links to the other stuff I use in many of my projects:
  * [sprintf](http://www.diveintojavascript.com/projects/javascript-sprintf)
  * [jQote - templating for Javascript](https://github.com/aefxx/jQote2)
  * [XRegExp - support for multiline regex, capturing groups, and more](http://xregexp.com/)
+ * [Underscore.js](http://documentcloud.github.com/underscore/#isEqual)
+ * [JSON](https://github.com/douglascrockford/JSON-js)
+ * [List of shims and polyfills (implement functionality in old browsers)](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills)
 
 This additional list was everything of use I found on GitHub, last I checked (standard stuff only, no DOM-specific stuff).
 
@@ -56,6 +59,10 @@ This additional list was everything of use I found on GitHub, last I checked (st
  * https://github.com/alexbech/JsUtils
  * GUID/rand (https://github.com/shezard/js_utils)
  * http://www.3site.eu/JSL/
+ 
+## TODO
+ * Mention compressors
+ * Mention dependency loaders
 
 ## License
 
