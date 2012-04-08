@@ -7,6 +7,9 @@ Some of the differences between v5 and v3 (v4 was skipped):
 	
 Official ECMAScript v5 specification:
 	http://www.ecma-international.org/publications/standards/Ecma-262.htm
+	
+Note: Apache's mod_security may block files with ECMAScript in the name.
+As an alternative, ES.v5.js has the same functionality as ECMAScript.v5.js.
 */
 
 /**
