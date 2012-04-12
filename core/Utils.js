@@ -47,10 +47,13 @@ Splits a string by regexp without including capturing groups in the result.
 
 See the following for more context:
 http://blog.getify.com/2010/11/to-capture-or-not/
+
+Why [\s\S] instead of .?:
+All common Perl-like regular expression flavors except JavaScript include a flag that allows dot to match newlines. Without this mode, matching any single character requires, e.g., [\s\S]
 */
 Utils.SplitWithoutCapture = function (str, split) {
 	return str.split(
-		new RegExp(split.source.replace(/\(([^?].*?)\)/g, "(?:$1)"))
+		new RegExp(split.source.replace(/\(([^?][\s\S]*?)\)/g, "(?:$1)"))
 	);
 };
 Utils.StartsWith = function (me, str){
