@@ -1,10 +1,12 @@
 /*
 Creates an object
+
+@param {Object} attachTo Optional shorthand. Makes attachTo[eventName] map to Event.Set.
 */
-function Event (eventName) {
+function Event (eventName, attachTo) {
 	var _eventHandler = null;
 	var _isLoggingEnabled = (typeof DEBUG !== 'undefined');
-	return {
+	var ev = {
 		"Call" : function() {
 			if(_eventHandler) {
 				if(_isLoggingEnabled) {
@@ -19,4 +21,8 @@ function Event (eventName) {
 			_eventHandler = handler;
 		}
 	};
+    if(attachTo) {
+        attachTo[eventName] = ev.Set;
+    }
+    return ev;
 }
