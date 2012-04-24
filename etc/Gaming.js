@@ -29,7 +29,7 @@ Gaming.DiceRoll = function(sides) {
     };
 };
 /**
-Returns an array of DiceRolls, with an additional method getValue
+Returns an array of DiceRolls, with additional methods getValue and forceValue
 @example
 //To roll 2d6, reroll one die, and get the end result.
 var myDie = Gaming.RollDice(2,6);
@@ -39,12 +39,16 @@ var mySpeedRoll = myDie.getValue();
 */
 Gaming.RollDice = function(numberOfDice, sides) {
     var diceRolls = [];
+	var override = false;
     for(var i = 0; i < numberOfDice; i++) {
         diceRolls.push(new Gaming.DiceRoll(sides));
     }
     diceRolls.getValue = function() {
-        return Math.sum(diceRolls.map(function(roll) { return roll.getValue(); }));
+        return override || Math.sum(diceRolls.map(function(roll) { return roll.getValue(); }));
     };
+	diceRolls.forceValue = function(pOverride) {
+		override = pOverride;
+	};
     return diceRolls;
 };
 Gaming.TestDice = function() {
