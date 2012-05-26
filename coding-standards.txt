@@ -17,3 +17,13 @@ Miscellaneous thoughts you can ignore:
 Some articles on each:
 http://killdream.github.com/blog/2011/10/understanding-javascript-oop/index.html
 http://www.aminutewithbrendan.com/pages/20110216
+
+--
+
+Thoughts on documentation
+
+Code should be written in the most likely way for anyone to figure out what's going on with least hassle (minimal surprise)
+Should be as little indented as possible (flat structure)
+Should be as modular as possible
+If i weren't worried about modularity - what would i do?
+Anything added for the sake of tweaking an external tool (doc generator, etc.) should be commented - the hope is someday we won't need it to make the tool work (doc engines are changing)
