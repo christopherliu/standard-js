@@ -1,5 +1,5 @@
 /*
-Creates an object
+@returns An Event object that can be bound. Does not work with new yet.
 
 @param {Object} attachTo Optional shorthand. Makes attachTo[eventName] map to Event.Set.
 */

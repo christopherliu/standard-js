@@ -13,6 +13,7 @@ Utils.IsPlural = function(word) {
 /**
 Similar to Array.prototype.map construct, but for Objects. Only includes
 properties of the object itself, and not its prototypes.
+@deprecated use Object.keys()
 */
 Utils.ForEachOwnProperty = function(obj, testFunction) {
     for(var propertyName in obj) {
@@ -70,4 +71,4 @@ Utils.FindFirst = function(ar, findFunction) {
 		}
 	}
 	return false;
-}
+};
