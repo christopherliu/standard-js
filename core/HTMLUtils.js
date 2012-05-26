@@ -28,6 +28,27 @@ HTMLUtils.BuildAttributeString = function(attributes) {
 		return sprintf(' %s="%s"', key, attributes[key]);
 	}).join("");
 };
+HTMLUtils.BuildQueryString =
+	function(fieldValuePairs) {
+		return Object.keys(fieldValuePairs || {}).map(
+			function(key) {
+				return sprintf('%s=%s', encodeURI(key),
+					encodeURI(fieldValuePairs[key]));
+			}).join("&");
+	};
+/**
+ * Converts any string to a form suitable for use as an HTML classname. The
+ * requirements for an HTML classname are as follows:
+ * http://stackoverflow.com/questions/448981/what-characters-are-valid-in-css-class-names
+ */
+HTMLUtils.ConvertToClass =
+	function(s) {
+		var INVALID_CLASS_CHARACTERS = /[^_a-zA-Z0-9-]/g;
+		var INVALID_STARTING_CHARACTERS = /^[^_a-zA-Z]+/g;
+
+		return s.replace(INVALID_CLASS_CHARACTERS, "_").replace(
+			INVALID_STARTING_CHARACTERS, "");
+	};
 /**
  * Converts any string to a form suitable for use as an HTML ID. The
  * requirements for an HTML ID are as follows.
@@ -37,13 +58,13 @@ HTMLUtils.BuildAttributeString = function(attributes) {
  * colons (":"), and periods (".").
  */
 HTMLUtils.ConvertToID =
-		function(s) {
-			var INVALID_ID_CHARACTERS = /[^A-Za-z0-9\-_:\.]/g;
-			var INVALID_STARTING_CHARACTERS = /^[^A-Za-z]+/g;
+	function(s) {
+		var INVALID_ID_CHARACTERS = /[^A-Za-z0-9\-_:\.]/g;
+		var INVALID_STARTING_CHARACTERS = /^[^A-Za-z]+/g;
 
-			return s.replace(INVALID_ID_CHARACTERS, "_").replace(
-					INVALID_STARTING_CHARACTERS, "");
-		};
+		return s.replace(INVALID_ID_CHARACTERS, "_").replace(
+			INVALID_STARTING_CHARACTERS, "");
+	};
 /**
  * Converts a string to a slug that can be part of a URL. For example, "Tim's
  * Donuts" becomes "tims-donuts." Equivalent to the web2py implementation.
