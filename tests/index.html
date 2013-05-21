@@ -1,0 +1,42 @@
+<html>
+	<head>
+
+		<!-- Load jQuery and QUnit -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css" type="text/css" media="screen" />
+
+		<!-- Load modules to be tested -->
+		<script src="../core/Utils.js"></script>
+		<script>
+            var standardJS = {
+                "runTests" : function() {
+                    test("Utils.EndsWith", function() {
+                        ok(Utils.EndsWith("abc", "c"), "abc ends with c");
+                    });
+                    
+                    
+                    test("true", function() {
+                        ok(true, "true");
+                    });
+                }
+            };
+		</script>
+
+		<!-- This jQuery fragment calls Calculator.runTests() after the document loads -->
+		<script>
+            $(document).ready(function() {
+                standardJS.runTests();
+            });
+		</script>
+
+	</head>
+
+	<body>
+		<!-- QUnit will put the results in the elements here -->
+		<h1 id="qunit-header">StandardJS Tests</h1>
+		<h2 id="qunit-banner"></h2>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+	</body>
+</html>
