@@ -4,16 +4,27 @@
 if (!Gaming)
 	var Gaming = {};
 /**
+ * Events: roll(ed), force(d), seen
+ * 
  * @class A single roll of the die.
  * @constructor
+ * @param {Function}
+ *            random A replacement for the random function, if we choose to
+ *            seed.
  */
-Gaming.DiceRoll = function(sides) {
+Gaming.DiceRoll = function(sides, random) {
+	var self = this;
 	var value;
 	var publisher = new Publisher();
-	
+
 	function _roll() {
-		value = Utils.GenerateRandomInteger(1, sides);
-		publisher.notifySubscribers({ "name": "roll", "value": value });
+		value = Utils.GenerateRandomInteger(1, sides, random);
+		self.isForced = false;
+		self.hasBeenSeen = false;
+		publisher.notifySubscribers({
+			"name" : "roll",
+			"value" : value
+		});
 		return value;
 	}
 
@@ -23,7 +34,19 @@ Gaming.DiceRoll = function(sides) {
 	 */
 	this.addSubscriber = function(subscriber) {
 		publisher.addSubscriber(subscriber);
-		publisher.notifySubscribers({ "name": "roll", "value": value });
+		// TODO this shouldn't notify all old subscribers just because a new one
+		publisher.notifySubscribers({
+			"name" : "roll",
+			"value" : value
+		});
+	};
+	this.forceValue = function(newValue) {
+		value = newValue;
+		self.isForced = true;
+		publisher.notifySubscribers({
+			"name" : "force",
+			"value" : value
+		});
 	};
 	/**
 	 * Get the value of the die as rolled.
@@ -32,9 +55,20 @@ Gaming.DiceRoll = function(sides) {
 		return value;
 	};
 	/**
+	 * Has someone seen the die yet?
+	 */
+	this.hasBeenSeen = false;
+	this.isForced = false;
+	/**
 	 * Reroll the die to produce a new outcome. Returns outcome for reference.
 	 */
 	this.reroll = _roll;
+	this.see = function() {
+		self.hasBeenSeen = true;
+		publisher.notifySubscribers({
+			"name" : "seen"
+		});
+	}
 };
 /**
  * @returns An array of DiceRolls, with additional methods getValue and
@@ -46,13 +80,17 @@ Gaming.DiceRoll = function(sides) {
  myDie[0].reroll();
  var mySpeedRoll = myDie.getValue();
  </code>
+ * @param {Function}
+ *            random A replacement for the random function, if we choose to
+ *            seed.
  * @version NewDice
+ * @returns {Gaming.DiceRollCollection}
  */
-Gaming.RollDice = function(numberOfDice, sides) {
+Gaming.RollDice = function(numberOfDice, sides, random) {
 	var diceRolls = [];
 	var overrideValue = false;
 	for ( var i = 0; i < numberOfDice; i++) {
-		diceRolls.push(new Gaming.DiceRoll(sides));
+		diceRolls.push(new Gaming.DiceRoll(sides, random));
 	}
 	diceRolls.getValue = function() {
 		return overrideValue || Math.sum(diceRolls.map(function(roll) {
