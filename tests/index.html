@@ -48,6 +48,16 @@
            				ok(result === undefined, "Between 15 and 10, generated " + result);
            			});
            			
+           			test("Min is not a number, no random function given", function() {
+           				var result = standard_library.math.Random.generateRandomInteger("a", 10);
+           				ok(result === undefined, "Between a and 10, generated " + result);
+           			});
+           			
+           			test("Max is not a number, no random function given", function() {
+           				var result = standard_library.math.Random.generateRandomInteger(10, "a");
+           				ok(result === undefined, "Between 10 and a, generated " + result);
+           			});
+           			
            			// SUM
            			module("standard_library.math.Sum.sum");
            			
@@ -68,6 +78,13 @@
            				var array = ["1", "2", "3", "4"];
            				var result = standard_library.math.Sum.sum(array);
            				ok(result === undefined, "Array of strings, sums to " + result);
+           			});
+           			
+           			test("Not an array case", function() {
+           				// Just to say this works. Not to say it should be used like this.
+           				var array = 0;
+           				var result = standard_library.math.Sum.sum(array);
+           				ok(result === undefined, "Not an array, sums to " + result);
            			});
            		}
            }
