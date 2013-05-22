@@ -1,10 +1,10 @@
-if (!this.standard_library) {
-	this.standard_library = {};
-}
-if (!standard_library.utilities) {
+if ( typeof standard_library === "undefined")
+	var standard_library = {};
+if ( typeof standard_library.utilities === "undefined")
 	standard_library.utilities = {};
-}
-
+if ( typeof standard_library.utilities.ArrayUtils === "undefined")
+	standard_library.utilities.ArrayUtils = {};
+	
 /**
  * Removes an element, or set of elements, from within an array
  */

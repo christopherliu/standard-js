@@ -4,15 +4,12 @@
  * @namespace Holds functionality related to manipulating the browser, that is
  *            not directly related to the DOM.
  */
-if (typeof standard_library === 'undefined') {
+if ( typeof standard_library === "undefined")
 	var standard_library = {};
-}
-if (!standard_library.browser) {
+if ( typeof standard_library.browser === "undefined")
 	standard_library.browser = {};
-}
-if (!standard_library.browser.Browser) {
+if ( typeof standard_library.browser.Browser === "undefined")
 	standard_library.browser.Browser = {};
-}
 
 /**
  * @returns {Object} the query string of the current browser window as key-value

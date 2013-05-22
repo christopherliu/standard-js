@@ -3,15 +3,13 @@
  * @namespace 	Contains functions which manipulate strings.
  */
 if ( typeof standard_library === "undefined")
-	var standard_library = {}
+	var standard_library = {};
 if ( typeof standard_library.utilities === "undefined")
-	standard_library.utilities = {}
+	standard_library.utilities = {};
 if ( typeof standard_library.utilities.StringUtils === "undefined")
-	standard_library.utilities.StringUtils = {}
+	standard_library.utilities.StringUtils = {};
 
 /**
- * Determines if the word starts with the pattern.
- * 
  * @param {String}
  * 			word	The string to check on.
  * @param {String}
@@ -20,38 +18,25 @@ if ( typeof standard_library.utilities.StringUtils === "undefined")
  */
 standard_library.utilities.StringUtils.startsWith = function(word, str) {
 	"use strict";
-	try {
-		// Validate that me and str are strings.
-		if ( typeof word !== "string" || typeof str !== "string")
-			throw "Error: Me and/or str are not strings.";
-		else
-			return word.slice(0, str.length) === str;
-	} catch (error) {
-		//alert(error);
-		return undefined;
-	}
+	if ( typeof word !== "string" || typeof str !== "string")
+		return undefined
+	else
+		return word.slice(0, str.length) === str;
 };
 
-/** 
- * Determines if the word ends with the pattern.
- * 
+/**
  * @param {String}
  * 			word	The string to check on.
  * @param {String}
  * 			pattern	The substring to check in the string.
  * @returns {Boolean} A boolean value on whether word ends with the pattern or not.
  */
-standard_library.utilities.StringUtils.endsWith = function(word, pattern) {"use strict";
-	try {
-		// Validate that word and pattern are strings.
-		if ( typeof word !== "string" || typeof pattern !== "string")
-			throw "Error: Word and/or pattern are not strings.";
-		else
-			return !!word.match(pattern + '$');
-	} catch (error) {
-		//alert(error);
+standard_library.utilities.StringUtils.endsWith = function(word, pattern) {
+	"use strict";
+	if ( typeof word !== "string" || typeof pattern !== "string")
 		return undefined;
-	}
+	else
+		return !!word.match(pattern + '$');
 };
 
 /**

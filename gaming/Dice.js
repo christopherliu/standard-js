@@ -4,19 +4,17 @@
 
 /**
  * @requires 	standard_library.math.Random
+ * @requires	standard_library.math.Sum
+ * @requires
  * @name 		standard_library.gaming.Dice
  * @namespace 	Provides dice functionality.
  */
-if (typeof standard_library === 'undefined') {
+if ( typeof standard_library === "undefined")
 	var standard_library = {};
-}
-if (!standard_library.gaming) {
+if ( typeof standard_library.gaming === "undefined")
 	standard_library.gaming = {};
-}
-if (!standard_library.gaming.Dice) {
+if ( typeof standard_library.gaming.Dice === "undefined")
 	standard_library.gaming.Dice = {};
-}
-}
 
 /**
  * Events: roll(ed), force(d), seen

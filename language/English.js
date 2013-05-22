@@ -4,11 +4,11 @@
  * @namespace 	Contains functions which checks for English grammar and syntax.
  */
 if ( typeof standard_library === "undefined")
-	var standard_library = {}
+	var standard_library = {};
 if ( typeof standard_library.language === "undefined")
-	standard_library.language = {}
+	standard_library.language = {};
 if ( typeof standard_library.language.English === "undefined")
-	standard_library.language.English = {}
+	standard_library.language.English = {};
 
 /**
  * Corrects the usage of verbs to the proper tense. [INCOMPLETE]

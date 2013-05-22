@@ -3,15 +3,12 @@
  * @name 		standard_library.browser.DOM
  * @namespace 	Holds functionality related to manipulating the DOM.
  */
-if ( typeof standard_library === 'undefined') {
+if ( typeof standard_library === "undefined")
 	var standard_library = {};
-}
-if (!standard_library.browser) {
+if ( typeof standard_library.browser === "undefined")
 	standard_library.browser = {};
-}
-if (!standard_library.browser.DOM) {
+if ( typeof standard_library.browser.DOM === "undefined")
 	standard_library.browser.DOM = {};
-}
 
 /**
  * Given a DOM element, retrieve an object containing all attributes. This
