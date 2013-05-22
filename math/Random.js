@@ -19,15 +19,13 @@ if (typeof standard_library.math.Random === "undefined")
  * @param {Function}
  *          random 	A replacement for the random function, 
  * 					if we choose to seed.
- * @return {Number} An integer which was randomly generated.
+ * @returns {Number} An integer which was randomly generated.
  */
 standard_library.math.Random.generateRandomInteger = function(min, max, fnRandom) {
 	"use strict";
 	try {
-		// Validate that min and max are numbers.
 		if (typeof min !== "number" || typeof max !== "number")
 			throw "Error: Min and/or max are not numberic values.";
-		// Validate that max is not less than min.
 		else if (max < min)
 			throw "Error: Max is greater than min.";
 		

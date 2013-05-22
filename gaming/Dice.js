@@ -16,6 +16,7 @@ if (!standard_library.gaming) {
 if (!standard_library.gaming.Dice) {
 	standard_library.gaming.Dice = {};
 }
+}
 
 /**
  * Events: roll(ed), force(d), seen

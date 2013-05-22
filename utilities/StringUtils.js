@@ -16,7 +16,7 @@ if ( typeof standard_library.utilities.StringUtils === "undefined")
  * 			word	The string to check on.
  * @param {String}
  * 			str		The substring to check in the string.
- * @return {Boolean} A boolean value on whether me starts with the str or not.
+ * @returns {Boolean} A boolean value on whether me starts with the str or not.
  */
 standard_library.utilities.StringUtils.startsWith = function(word, str) {
 	"use strict";
@@ -39,7 +39,7 @@ standard_library.utilities.StringUtils.startsWith = function(word, str) {
  * 			word	The string to check on.
  * @param {String}
  * 			pattern	The substring to check in the string.
- * @return {Boolean} A boolean value on whether word ends with the pattern or not.
+ * @returns {Boolean} A boolean value on whether word ends with the pattern or not.
  */
 standard_library.utilities.StringUtils.endsWith = function(word, pattern) {"use strict";
 	try {

@@ -14,7 +14,7 @@
 			var standardJS = {
 				"runTests" : function() {
 					var result, array;
-					
+
 					// RANDOM
 					module("standard_library.math.Random.generateRandomInteger");
 
@@ -74,105 +74,105 @@
 						result = standard_library.math.Sum.sum(array);
 						ok(result === undefined, "Not an array, sums to " + result);
 					});
-					
+
 					// BROWSER
 					module("standard_library.browser.Browser");
-					
+
 					// DOM
 					module("standard_library.browser.DOM");
-					
+
 					// EVENT
 					module("standard_library.core.Event");
-					
+
 					// PUBLISHER
 					module("standard_library.core.Publisher");
-					
+
 					// DICE
 					module("standard_library.gaming.Dice");
-					
+
 					// ENGLISH
 					module("standard_library.language.English");
-					
+
 					test("Standard case", function() {
 						result = standard_library.language.English.isPlural("teachers");
 						ok(result, "teachers is plural " + result);
 					});
-					
+
 					// ARRAYUTILS
 					module("standard_library.utilities.ArrayUtils");
-					
+
 					// HTML
 					module("standard_library.utilities.HTML");
-					
+
 					// MISC
 					module("standard_library.utilities.Misc");
-					
+
 					// STARTS WITH
 					module("standard_library.utilities.StringUtils.startsWith");
-					
+
 					test("Standard case, character", function() {
 						result = standard_library.utilities.StringUtils.startsWith("abc", "a");
 						ok(result, "abc starts with a is " + result);
 					});
-					
+
 					test("Standard case, string", function() {
 						result = standard_library.utilities.StringUtils.startsWith("Hello world", "Hello");
 						ok(result, "Hello world starts with Hello is " + result);
 					});
-					
+
 					test("Substring non-existent", function() {
 						result = standard_library.utilities.StringUtils.startsWith("Hello world", "Goodbye");
 						ok(!result, "Hello world starts with Goodbye is " + result);
 					});
-					
+
 					test("Substring existent but does not starts with", function() {
 						result = standard_library.utilities.StringUtils.startsWith("Hello world", "world");
 						ok(!result, "Hello world starts with world is " + result);
 					});
-					
+
 					test("Pattern is not a string", function() {
 						result = standard_library.utilities.StringUtils.startsWith("1234", 1);
 						ok(result === undefined, "1234 starts with numberic 1 is " + result);
 					});
-					
+
 					test("Word is not a string", function() {
 						result = standard_library.utilities.StringUtils.startsWith(1234, "1");
 						ok(result === undefined, "Numberic 1234 starts with 1 is " + result);
 					});
-					
+
 					// ENDS WITH
 					module("standard_library.utilities.StringUtils.endsWith");
-					
+
 					test("Standard case, character", function() {
 						result = standard_library.utilities.StringUtils.endsWith("abc", "c");
 						ok(result, "abc ends with c is " + result);
 					});
-					
+
 					test("Standard case, string", function() {
 						result = standard_library.utilities.StringUtils.endsWith("Hello world", "world");
 						ok(result, "Hello world ends with world is " + result);
 					});
-					
+
 					test("Substring non-existent", function() {
 						result = standard_library.utilities.StringUtils.endsWith("Hello world", "earth");
 						ok(!result, "Hello world ends with earth is " + result);
 					});
-					
+
 					test("Substring existent but does not end with", function() {
 						result = standard_library.utilities.StringUtils.endsWith("Hello world", "Hello");
 						ok(!result, "Hello world ends with Hello is " + result);
 					});
-					
+
 					test("Pattern is not a string", function() {
 						result = standard_library.utilities.StringUtils.endsWith("1234", 4);
 						ok(result === undefined, "1234 ends with numberic 4 is " + result);
 					});
-					
+
 					test("Word is not a string", function() {
 						result = standard_library.utilities.StringUtils.endsWith(1234, "4");
 						ok(result === undefined, "Numberic 1234 ends with 4 is " + result);
 					});
-					
+
 					// SPLIT WITHOUT CAPTURE
 					module("standard_library.utilities.StringUtils.splitWithoutCapture");
 				}

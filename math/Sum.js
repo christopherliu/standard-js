@@ -12,14 +12,13 @@ if (typeof standard_library.math.Sum === "undefined")
 /**
  * Sums the values of an array.
  * 
- * @param {Array}
+ * @param {Number[]}
  * 			ar	An array object of numbers.
- * @return {Number} the sum of the array elements
+ * @returns {Number} the sum of the array elements
  */
 standard_library.math.Sum.sum = function(ar) {
 	"use strict";
 	try {
-		// Validate that ar is an array.
 		if (!Array.isArray(ar))
 			throw "Error: Parameter 'ar' provided is not an array.";
 		else {
