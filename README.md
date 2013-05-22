@@ -39,6 +39,9 @@ Standard-js is built to be modular - use what you need, throw out what you don't
  * core/ - core is designed to include primary JS functionality, including JavaScript 1.6
  * browser/ - browser specific code - DOM stuff and the like
  * etc/ - additional functionality
+ 
+## Notes
+Addresses with ECMAScript may be blocked by some servers (Apache on Site5 is the only known example). For this reason, we include ES.v5 as an alternative spelling.
 
 ### Other useful libraries
 
@@ -63,6 +66,9 @@ This additional list was everything of use I found on GitHub, last I checked (st
 ## TODO
  * Mention compressors
  * Mention dependency loaders
+ 
+## Contributing to standard-js
+StandardJS uses the [JSDoc](http://usejsdoc.org/) set of conventions, as well as the standard Eclipse/Aptana autoformatting (Ctrl-Shift-F, 80 characters per line).
 
 ## License
 
