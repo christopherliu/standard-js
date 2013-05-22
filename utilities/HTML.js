@@ -2,22 +2,28 @@
  * Dependencies: ECMAScript V5 @namespace Utilities useful for JavaScript use in
  * HTML.
  */
-if (!HTMLUtils)
-	var HTMLUtils = {};
+
+if (!this.standard_library) {
+	this.standard_library = {};
+}
+if (!standard_library.utilities) {
+	standard_library.utilities = {};
+}
+
 /*
  * Given a query string, break it apart into an object. Handles arrays using
  * PHP/ASP conventions: http://stackoverflow.com/a/1746566/40352 (Not all
  * frameworks will support this behavior)
  * 
- * @example HTMLUtils.BreakQueryStringIntoParameters("fox=animal") === {"fox":
+ * @example HTML.BreakQueryStringIntoParameters("fox=animal") === {"fox":
  * "animal"}
  * 
- * HTMLUtils.BreakQueryStringIntoParameters("array[]=1&array[]=2") === {"array":
+ * HTML.BreakQueryStringIntoParameters("array[]=1&array[]=2") === {"array":
  * [1,2]}
  * 
- * HTMLUtils.BreakQueryStringIntoParameters("") === {}
+ * HTML.BreakQueryStringIntoParameters("") === {}
  */
-HTMLUtils.BreakQueryStringIntoParameters = function(queryString) {
+standard_library.utilities.HTML.BreakQueryStringIntoParameters = function(queryString) {
 	// TODO maybe update with better version
 	// http://stackoverflow.com/q/901115/40352
 	// regex would be slower but this method needs to fix +
@@ -47,11 +53,11 @@ HTMLUtils.BreakQueryStringIntoParameters = function(queryString) {
  * Given an object with properties, creates an attribute string that can be used
  * in an HTML tag.
  * 
- * @example HTMLUtils.BuildAttributeString({"class":"generic",
+ * @example HTML.BuildAttributeString({"class":"generic",
  *          "style":"display:none;"}) == ' class="generic"
  *          style="display:none;"'
  */
-HTMLUtils.BuildAttributeString = function(attributes) {
+standard_library.utilities.HTML.BuildAttributeString = function(attributes) {
 	return Object.keys(attributes || {}).map(function(key) {
 		return sprintf(' %s="%s"', key, attributes[key]);
 	}).join("");
@@ -61,11 +67,11 @@ HTMLUtils.BuildAttributeString = function(attributes) {
  * arrays using PHP/ASP conventions: http://stackoverflow.com/a/1746566/40352
  * (Not all frameworks will support this behavior)
  * 
- * @example HTMLUtils.BuildQueryString({"fox": "animal"}) === "fox=animal"
- *          HTMLUtils.BuildQueryString({"array": [1,2]}) ===
+ * @example HEMLEntityUtils.BuildQueryString({"fox": "animal"}) === "fox=animal"
+ *          HTML.BuildQueryString({"array": [1,2]}) ===
  *          "array[]=1&array[]=2"
  */
-HTMLUtils.BuildQueryString = function(fieldValuePairs) {
+standard_library.utilities.HTML.BuildQueryString = function(fieldValuePairs) {
 	return Object
 			.keys(fieldValuePairs || {})
 			.map(
@@ -87,7 +93,7 @@ HTMLUtils.BuildQueryString = function(fieldValuePairs) {
  * requirements for an HTML classname are as follows:
  * http://stackoverflow.com/questions/448981/what-characters-are-valid-in-css-class-names
  */
-HTMLUtils.ConvertToClass = function(s) {
+standard_library.utilities.HTML.ConvertToClass = function(s) {
 	var INVALID_CLASS_CHARACTERS = /[^_a-zA-Z0-9-]/g;
 	var INVALID_STARTING_CHARACTERS = /^[^_a-zA-Z]+/g;
 
@@ -102,7 +108,7 @@ HTMLUtils.ConvertToClass = function(s) {
  * any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"),
  * colons (":"), and periods (".").
  */
-HTMLUtils.ConvertToID = function(s) {
+standard_library.utilities.HTML.ConvertToID = function(s) {
 	var INVALID_ID_CHARACTERS = /[^A-Za-z0-9\-_:\.]/g;
 	var INVALID_STARTING_CHARACTERS = /^[^A-Za-z]+/g;
 
@@ -116,7 +122,7 @@ HTMLUtils.ConvertToID = function(s) {
  *            str
  * @returns {UnicodeString} Converts &amp; -> &, &lt; -> <, etc.
  */
-HTMLUtils.DecodeEntities = (function() {
+standard_library.utilities.HTML.DecodeEntities = (function() {
 	// this prevents any overhead from creating the object each time
 	var element = false;
 
@@ -154,7 +160,7 @@ HTMLUtils.DecodeEntities = (function() {
  * Converts a string to a slug that can be part of a URL. For example, "Tim's
  * Donuts" becomes "tims-donuts." Equivalent to the web2py implementation.
  */
-HTMLUtils.MakeURLSlug = function(s) {
+standard_library.utilities.HTML.MakeURLSlug = function(s) {
 	var _slugConversions = [ [ /&\w+;/g, '' ], // strip html entities
 	[ /[\s_]+/g, '-' ], // whitespace & underscores to hyphens
 	[ /[^a-z0-9\-]/g, '' ], // strip all but alphanumeric/hyphen

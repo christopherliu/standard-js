@@ -18,7 +18,7 @@ publishingMethodAccessor.notifySubscribers({
 this.addSubscriber = publisher.addSubscriber;
  </code>
  */
-function Publisher(publishingMethodAccessor) {
+function standard_library.core.Publisher.Publisher(publishingMethodAccessor) {
 	// -------------------------------------------------------------------------
 	// Private variables
 	var subscribers = [];
