@@ -12,7 +12,7 @@ if (typeof standard_library.math.Sum === "undefined")
 /**
  * Sums the values of an array.
  * 
- * @param {Object}
+ * @param {Array}
  * 			ar	An array object of numbers.
  * @return {Number} the sum of the array elements
  */
