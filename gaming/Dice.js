@@ -1,20 +1,30 @@
 /**
  * Dependencies: Utils, Math, Publisher
  */
-if (!this.standard_library) {
-	this.standard_library = {};
+
+/**
+ * @requires 	standard_library.math.Random
+ * @name 		standard_library.gaming.Dice
+ * @namespace 	Provides dice functionality.
+ */
+if (typeof standard_library === 'undefined') {
+	var standard_library = {};
 }
 if (!standard_library.gaming) {
 	standard_library.gaming = {};
 }
+if (!standard_library.gaming.Dice) {
+	standard_library.gaming.Dice = {};
+}
+
 /**
  * Events: roll(ed), force(d), seen
  * 
  * @class A single roll of the die.
  * @constructor
  * @param {Function}
- *            random A replacement for the random function, if we choose to
- *            seed.
+ *			random 	A replacement for the random function, 
+ * 					if we choose to seed.
  */
 standard_library.gaming.Dice.DiceRoll = function(sides, random) {
 	var self = this;
@@ -22,7 +32,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, random) {
 	var publisher = new Publisher();
 
 	function _roll() {
-		value = Utils.GenerateRandomInteger(1, sides, random);
+		value = standard_library.math.Random.GenerateRandomInteger(1, sides, random);
 		self.isForced = false;
 		self.hasBeenSeen = false;
 		publisher.notifySubscribers({
@@ -74,6 +84,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, random) {
 		});
 	}
 };
+
 /**
  * @returns An array of DiceRolls, with additional methods getValue and
  *          forceValue.
@@ -90,7 +101,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, random) {
  * @version NewDice
  * @returns {Dice.DiceRollCollection}
  */
-standard_library.gaming.Dice.RollDice = function(numberOfDice, sides, random) {
+standard_library.gaming.Dice.rollDice = function(numberOfDice, sides, random) {
 	var diceRolls = [];
 	var overrideValue = false;
 	for ( var i = 0; i < numberOfDice; i++) {
@@ -106,7 +117,9 @@ standard_library.gaming.Dice.RollDice = function(numberOfDice, sides, random) {
 	};
 	return diceRolls;
 };
-standard_library.gaming.Dice.TestDice = function() {
+
+standard_library.gaming.Dice.testDice = function() {
+	"use strict";
 	var myDie = Dice.RollDice(2, 6);
 	myDie[0].reroll();
 	var mySpeedRoll = myDie.getValue();
