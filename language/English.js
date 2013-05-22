@@ -1,28 +1,44 @@
-if (!this.standard_library) {
-	this.standard_library = {};
-}
-if (!standard_library.language) {
+/**
+ * @requires 	standard_library.utilities.StringUtils
+ * @name		standard_library.language.English
+ * @namespace 	Contains functions which checks for English grammar and syntax.
+ */
+if ( typeof standard_library === "undefined")
+	var standard_library = {};
+if ( typeof standard_library.language === "undefined")
 	standard_library.language = {};
-}
+if ( typeof standard_library.language.English === "undefined")
+	standard_library.language.English = {};
 
-standard_library.language.English = {
-	"ConjugateVerb" : function(subject, thirdPersonSingular) {
-		if (subject.toLowerCase() === "you" || standard_library.utilities.StringUtils.IsPlural(subject)) {
-			if (thirdPersonSingular === "is")
-				return "are";
-			else if (thirdPersonSingular === "does")
-				return "do";
-			else
-				return thirdPersonSingular.substring(0,
-						thirdPersonSingular.length - 1);
-		} else {
-			return thirdPersonSingular;
-		}
+/**
+ * Corrects the usage of verbs to the proper tense. [INCOMPLETE]
+ *
+ * @param {String}
+ * 			subject					The subject of the sentence.
+ * @param {String}
+ * 			thirdPersonSingular		The verb of the sentence.
+ * @returns {String} The correct verb based on the subject.
+ */
+standard_library.language.English.conjugateVerb = function(subject, thirdPersonSingular) {
+	if (subject.toLowerCase() === "you" || standard_library.language.English.isPlural(subject)) {
+		if (thirdPersonSingular === "is")
+			return "are";
+		else if (thirdPersonSingular === "does")
+			return "do";
+		else
+			return thirdPersonSingular.substring(0, thirdPersonSingular.length - 1);
+	} else {
+		return thirdPersonSingular;
 	}
 };
 
-// Quick-and-dirty function to test if word is plural, not always accurate.
-// Depends on EndsWith.
-standard_library.language.isPlural = function(word) {
-	return standard_library.utilities.StringUtils.EndsWith(word, 's');
+/**
+ * Checks if the word is plural. Limited to regular plural nouns.
+ *
+ * @param {String}
+ * 			word	The subject of the sentence.
+ * @returns {Boolean} True if word is plural, false otherwise.
+ */
+standard_library.language.English.isPlural = function(word) {
+	return standard_library.utilities.StringUtils.endsWith(word, 's');
 }

@@ -1,9 +1,9 @@
-if (!this.standard_library) {
-	this.standard_library = {};
-}
-if (!standard_library.utilities) {
+if ( typeof standard_library === "undefined")
+	var standard_library = {};
+if ( typeof standard_library.utilities === "undefined")
 	standard_library.utilities = {};
-}
+if ( typeof standard_library.utilities.Misc === "undefined")
+	standard_library.utilities.Misc = {};
 
 /**
  * Similar to Array.prototype.map construct, but for Objects. Only includes

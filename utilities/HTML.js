@@ -2,13 +2,12 @@
  * Dependencies: ECMAScript V5 @namespace Utilities useful for JavaScript use in
  * HTML.
  */
-
-if (!this.standard_library) {
-	this.standard_library = {};
-}
-if (!standard_library.utilities) {
+if ( typeof standard_library === "undefined")
+	var standard_library = {};
+if ( typeof standard_library.utilities === "undefined")
 	standard_library.utilities = {};
-}
+if ( typeof standard_library.utilities.HTML === "undefined")
+	standard_library.utilities.HTML = {};
 
 /*
  * Given a query string, break it apart into an object. Handles arrays using
