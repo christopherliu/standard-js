@@ -13,19 +13,19 @@ if ( typeof standard_library.utilities.StringUtils === "undefined")
  * Determines if the word starts with the pattern.
  * 
  * @param {String}
- * 			me		The string to check on.
+ * 			word	The string to check on.
  * @param {String}
  * 			str		The substring to check in the string.
  * @return {Boolean} A boolean value on whether me starts with the str or not.
  */
-standard_library.utilities.StringUtils.startsWith = function(me, str) {
+standard_library.utilities.StringUtils.startsWith = function(word, str) {
 	"use strict";
 	try {
 		// Validate that me and str are strings.
-		if ( typeof me !== "string" || typeof str !== "string")
+		if ( typeof word !== "string" || typeof str !== "string")
 			throw "Error: Me and/or str are not strings.";
 		else
-			return me.slice(0, str.length) === str;
+			return word.slice(0, str.length) === str;
 	} catch (error) {
 		//alert(error);
 		return undefined;
@@ -84,7 +84,6 @@ standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split
  *
  * This function takes characters that wouldn't have the same code point in
  * ASCII, and removes or replaces them.
- *
  *
  * @param {UnicodeString}
  *            str
