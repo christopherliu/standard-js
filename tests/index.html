@@ -8,51 +8,43 @@
 		<!-- Load modules to be tested -->
 		<script src="../math/Random.js"></script>
 		<script src="../math/Sum.js"></script>
+		<script src="../language/English.js"></script>
+		<script src="../utilities/StringUtils.js"></script>
 		<script>
-			/*
-			 var standardJS = {
-			 "runTests" : function() {
-			 test("Utils.EndsWith", function() {
-			 ok(Utils.EndsWith("abc", "c"), "abc ends with c");
-			 });
-
-			 test("true", function() {
-			 ok(true, "true");
-			 });
-			 }
-			 }; */
 			var standardJS = {
 				"runTests" : function() {
+					var result, array;
+					
 					// RANDOM
 					module("standard_library.math.Random.generateRandomInteger");
 
 					test("Standard case, no random function given", function() {
-						var result = standard_library.math.Random.generateRandomInteger(10, 11);
+						result = standard_library.math.Random.generateRandomInteger(10, 11);
 						ok(result >= 10 && result <= 11, "Between 10 and 11, generated " + result);
 					});
 
 					test("Negative min case, no random function given", function() {
-						var result = standard_library.math.Random.generateRandomInteger(-10, 11);
+						result = standard_library.math.Random.generateRandomInteger(-10, 11);
 						ok(result >= -10 && result <= 11, "Between -10 and 11, generated " + result);
 					});
 
 					test("Negative min and negative max case, no random function given", function() {
-						var result = standard_library.math.Random.generateRandomInteger(-15, -10);
+						result = standard_library.math.Random.generateRandomInteger(-15, -10);
 						ok(result >= -15 && result <= -10, "Between -15 and -10, generated " + result);
 					});
 
 					test("Lower max than min, no random function given", function() {
-						var result = standard_library.math.Random.generateRandomInteger(15, 10);
+						result = standard_library.math.Random.generateRandomInteger(15, 10);
 						ok(result === undefined, "Between 15 and 10, generated " + result);
 					});
 
 					test("Min is not a number, no random function given", function() {
-						var result = standard_library.math.Random.generateRandomInteger("a", 10);
+						result = standard_library.math.Random.generateRandomInteger("a", 10);
 						ok(result === undefined, "Between a and 10, generated " + result);
 					});
 
 					test("Max is not a number, no random function given", function() {
-						var result = standard_library.math.Random.generateRandomInteger(10, "a");
+						result = standard_library.math.Random.generateRandomInteger(10, "a");
 						ok(result === undefined, "Between 10 and a, generated " + result);
 					});
 
@@ -60,29 +52,92 @@
 					module("standard_library.math.Sum.sum");
 
 					test("Standard case, array with numbers", function() {
-						var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-						var result = standard_library.math.Sum.sum(array);
+						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+						result = standard_library.math.Sum.sum(array);
 						ok(result === 55, "Array 1 to 10, sums to " + result);
 					});
 
 					test("Array with negative numbers", function() {
-						var array = [-3, -2, -1, 0, 1, 2, 3];
-						var result = standard_library.math.Sum.sum(array);
+						array = [-3, -2, -1, 0, 1, 2, 3];
+						result = standard_library.math.Sum.sum(array);
 						ok(result === 0, "Array of strings from -3 to 3, sums to " + result);
 					});
 
 					test("Array with strings case", function() {
-						// Just to say this works. Not to say it should be used like this.
-						var array = ["1", "2", "3", "4"];
-						var result = standard_library.math.Sum.sum(array);
+						array = ["1", "2", "3", "4"];
+						result = standard_library.math.Sum.sum(array);
 						ok(result === undefined, "Array of strings, sums to " + result);
 					});
 
 					test("Not an array case", function() {
-						// Just to say this works. Not to say it should be used like this.
-						var array = 0;
-						var result = standard_library.math.Sum.sum(array);
+						array = 0;
+						result = standard_library.math.Sum.sum(array);
 						ok(result === undefined, "Not an array, sums to " + result);
+					});
+					
+					// BROWSER
+					module("standard_library.browser.Browser");
+					
+					// DOM
+					module("standard_library.browser.DOM");
+					
+					// EVENT
+					module("standard_library.core.Event");
+					
+					// PUBLISHER
+					module("standard_library.core.Publisher");
+					
+					// DICE
+					module("standard_library.gaming.Dice");
+					
+					// ENGLISH
+					module("standard_library.language.English");
+					
+					test("Standard case", function() {
+						result = standard_library.language.English.isPlural("teachers");
+						ok(result, "teachers is plural " + result);
+					});
+					
+					// ARRAYUTILS
+					module("standard_library.utilities.ArrayUtils");
+					
+					// HTML
+					module("standard_library.utilities.HTML");
+					
+					// MISC
+					module("standard_library.utilities.Misc");
+					
+					// STRINGUTILS
+					module("standard_library.utilities.StringUtils");
+					
+					test("Standard case, character", function() {
+						result = standard_library.utilities.StringUtils.endsWith("abc", "c");
+						ok(result, "abc ends with c is " + result);
+					});
+					
+					test("Standard case, string", function() {
+						result = standard_library.utilities.StringUtils.endsWith("Hello world", "world");
+						ok(result, "Hello world ends with world is " + result);
+					});
+					
+					test("Substring non-existent", function() {
+						result = standard_library.utilities.StringUtils.endsWith("Hello world", "earth");
+						ok(!result, "Hello world ends with earth is " + result);
+					});
+					
+					test("Substring existent but does not end with", function() {
+						result = standard_library.utilities.StringUtils.endsWith("Hello world", "Hello");
+						ok(!result, "Hello world ends with Hello is " + result);
+					});
+					
+					test("Pattern is not a string", function() {
+						result = standard_library.utilities.StringUtils.endsWith("1234", 4);
+						ok(result === undefined, "1234 ends with numberic 4 is " + result);
+					});
+					
+					test("Word is not a string", function() {
+						result = standard_library.utilities.StringUtils.endsWith(1234, "4");
+						ok(result === undefined, "Numberic 1234 ends with 4 is " + result);
 					});
 				}
 			}

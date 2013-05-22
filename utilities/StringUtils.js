@@ -1,21 +1,31 @@
-if (!this.standard_library) {
-	this.standard_library = {};
-}
-if (!standard_library.utilities.StringUtils) {
-	standard_library.utilities.StringUtils = {};
-}
+if ( typeof standard_library === "undefined")
+	var standard_library = {}
+if ( typeof standard_library.utilities === "undefined")
+	standard_library.utilities = {}
+if ( typeof standard_library.utilities.StringUtils === "undefined")
+	standard_library.utilities.StringUtils = {}
 
 
 /** Determines if the word starts with the pattern.
  */
-standard_library.utilities.StringUtils.StartsWith = function(me, str) {
+standard_library.utilities.StringUtils.startsWith = function(me, str) {
 	return me.slice(0, str.length) == str;
 };	
 
 /** Determines if the word ends with the pattern.
  */
-standard_library.utilities.StringUtils.EndsWith = function(word, pattern) {
-	return word.match(pattern + '$');
+standard_library.utilities.StringUtils.endsWith = function(word, pattern) {
+	"use strict";
+	try {
+		// Validate that word and pattern are strings.
+		if (typeof word !== "string" || typeof pattern !== "string") {
+			throw "Error: Word and/or pattern are not strings.";
+		} else
+			return !!word.match(pattern + '$');
+	} catch (error) {
+		//alert(error);
+		return undefined;
+	}
 };
 
 /**
@@ -34,7 +44,7 @@ standard_library.utilities.StringUtils.EndsWith = function(word, pattern) {
  *            split
  */
 //String
-standard_library.utilities.StringUtils.SplitWithoutCapture = function(str, split) {
+standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split) {
 	var flags = (split.global ? "g" : "") + (split.ignoreCase ? "i" : "")
 			+ (split.multiline ? "m" : "");
 	var newRegExp = new RegExp(split.source.replace(/\(([^?][\s\S]*?)\)/g,
@@ -56,7 +66,7 @@ standard_library.utilities.StringUtils.SplitWithoutCapture = function(str, split
  *            str
  * @returns {ASCIIFriendlyString}
  */
-Unicode.MakeStringASCIIInvariant = function(str) {
+standard_library.utilities.StringUtils.makeStringASCIIInvariant = function(str) {
 	// http://www.fileformat.info/info/unicode/char/2019/index.htm
 	return str.replace("’", "'");
 };
