@@ -45,3 +45,27 @@ standard_library.utilities.ArrayUtils.FindFirst = function(ar, findFunction) {
 	}
 	return false;
 }; 
+
+/**
+ * Sums the values of an array.
+ * 
+ * @param {Number[]}
+ * 			ar	An array object of numbers.
+ * @returns {Number} the sum of the array elements
+ */
+standard_library.utilities.ArrayUtils.sum = function(ar) {
+	"use strict";
+	if (!Array.isArray(ar))
+		return undefined;
+	else {
+		var a = 0;
+		for (var i = 0; i < ar.length; i++) {
+			if (typeof ar[i] === "number") {
+				a = a + ar[i];
+			} else {
+				return undefined;
+			}
+		}
+		return a;
+	}
+};

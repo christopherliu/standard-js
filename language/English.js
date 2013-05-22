@@ -19,7 +19,7 @@ if ( typeof standard_library.language.English === "undefined")
  * 			thirdPersonSingular		The verb of the sentence.
  * @returns {String} The correct verb based on the subject.
  */
-standard_library.language.English.conjugativeVerb = function(subject, thirdPersonSingular) {
+standard_library.language.English.conjugateVerb = function(subject, thirdPersonSingular) {
 	if (subject.toLowerCase() === "you" || standard_library.language.English.isPlural(subject)) {
 		if (thirdPersonSingular === "is")
 			return "are";
@@ -37,7 +37,7 @@ standard_library.language.English.conjugativeVerb = function(subject, thirdPerso
  *
  * @param {String}
  * 			word	The subject of the sentence.
- * @returns {Boolean} A boolean value on whether the string is plural or not.
+ * @returns {Boolean} True if word is plural, false otherwise.
  */
 standard_library.language.English.isPlural = function(word) {
 	return standard_library.utilities.StringUtils.endsWith(word, 's');

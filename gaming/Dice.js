@@ -1,11 +1,7 @@
 /**
- * Dependencies: Utils, Math, Publisher
- */
-
-/**
  * @requires 	standard_library.math.Random
- * @requires	standard_library.math.Sum
- * @requires
+ * @requires	standard_library.utilities.ArrayUtils
+ * @requires	standard_library.core.Publisher
  * @name 		standard_library.gaming.Dice
  * @namespace 	Provides dice functionality.
  */
@@ -31,7 +27,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, random) {
 	var publisher = new Publisher();
 
 	function _roll() {
-		value = standard_library.math.Random.GenerateRandomInteger(1, sides, random);
+		value = standard_library.math.Random.generateRandomInteger(1, sides, random);
 		self.isForced = false;
 		self.hasBeenSeen = false;
 		publisher.notifySubscribers({
@@ -107,7 +103,7 @@ standard_library.gaming.Dice.rollDice = function(numberOfDice, sides, random) {
 		diceRolls.push(new Dice.DiceRoll(sides, random));
 	}
 	diceRolls.getValue = function() {
-		return overrideValue || Math.sum(diceRolls.map(function(roll) {
+		return overrideValue || standard_library.math.Sum.sum(diceRolls.map(function(roll) {
 			return roll.getValue();
 		}));
 	};
