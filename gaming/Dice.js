@@ -1,20 +1,25 @@
 /**
- * Dependencies: Utils, Math, Publisher
+ * @requires 	standard_library.math.Random
+ * @requires	standard_library.utilities.ArrayUtils
+ * @requires	standard_library.core.Publisher
+ * @name 		standard_library.gaming.Dice
+ * @namespace 	Provides dice functionality.
  */
-if (!this.standard_library) {
-	this.standard_library = {};
-}
-if (!standard_library.gaming) {
+if ( typeof standard_library === "undefined")
+	var standard_library = {};
+if ( typeof standard_library.gaming === "undefined")
 	standard_library.gaming = {};
-}
+if ( typeof standard_library.gaming.Dice === "undefined")
+	standard_library.gaming.Dice = {};
+
 /**
  * Events: roll(ed), force(d), seen
  * 
  * @class A single roll of the die.
  * @constructor
  * @param {Function}
- *            random A replacement for the random function, if we choose to
- *            seed.
+ *			random 	A replacement for the random function, 
+ * 					if we choose to seed.
  */
 standard_library.gaming.Dice.DiceRoll = function(sides, random) {
 	var self = this;
@@ -22,7 +27,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, random) {
 	var publisher = new Publisher();
 
 	function _roll() {
-		value = Utils.GenerateRandomInteger(1, sides, random);
+		value = standard_library.math.Random.generateRandomInteger(1, sides, random);
 		self.isForced = false;
 		self.hasBeenSeen = false;
 		publisher.notifySubscribers({
@@ -74,6 +79,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, random) {
 		});
 	}
 };
+
 /**
  * @returns An array of DiceRolls, with additional methods getValue and
  *          forceValue.
@@ -90,14 +96,14 @@ standard_library.gaming.Dice.DiceRoll = function(sides, random) {
  * @version NewDice
  * @returns {Dice.DiceRollCollection}
  */
-standard_library.gaming.Dice.RollDice = function(numberOfDice, sides, random) {
+standard_library.gaming.Dice.rollDice = function(numberOfDice, sides, random) {
 	var diceRolls = [];
 	var overrideValue = false;
 	for ( var i = 0; i < numberOfDice; i++) {
 		diceRolls.push(new Dice.DiceRoll(sides, random));
 	}
 	diceRolls.getValue = function() {
-		return overrideValue || Math.sum(diceRolls.map(function(roll) {
+		return overrideValue || standard_library.math.Sum.sum(diceRolls.map(function(roll) {
 			return roll.getValue();
 		}));
 	};
@@ -106,7 +112,9 @@ standard_library.gaming.Dice.RollDice = function(numberOfDice, sides, random) {
 	};
 	return diceRolls;
 };
-standard_library.gaming.Dice.TestDice = function() {
+
+standard_library.gaming.Dice.testDice = function() {
+	"use strict";
 	var myDie = Dice.RollDice(2, 6);
 	myDie[0].reroll();
 	var mySpeedRoll = myDie.getValue();
