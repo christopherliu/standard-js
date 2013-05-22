@@ -68,7 +68,7 @@ This additional list was everything of use I found on GitHub, last I checked (st
  * Mention dependency loaders
  
 ## Contributing to standard-js
-StandardJS uses the [JSDoc](https://code.google.com/p/jsdoc-toolkit/w/list) set of conventions, as well as the standard Eclipse/Aptana autoformatting (Ctrl-Shift-F, 80 characters per line).
+StandardJS uses the [JSDoc](http://usejsdoc.org/) set of conventions, as well as the standard Eclipse/Aptana autoformatting (Ctrl-Shift-F, 80 characters per line).
 
 ## License
 
