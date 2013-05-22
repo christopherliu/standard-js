@@ -33,7 +33,7 @@ standard_library.browser.DOM.ExtractAttributes = function(element) {"use strict"
  *
  * @param {Object}
  *            attributes
- * @param {String}
+ * @param {Object}
  *            attributes.method Either "get" or "post", corresponding to <form
  *            method="">. Default is post
  * @param {String}
