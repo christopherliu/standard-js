@@ -1,18 +1,29 @@
-if (!this.standard_library) {
-	this.standard_library = {};
-}
-if (!standard_library.math) {
-	standard_library.math = {};
-}
-
+// Validate existence of library.
+if (typeof standard_library === "undefined")
+	var standard_library = {}
+// Validate existence of the folder math.
+if (typeof standard_library.math === "undefined")
+	standard_library.math = {}
+// Validate existence of Sum.js in math.
+if (typeof standard_library.math.Sum === "undefined")
+	standard_library.math.Sum = {}
+	
 /**
- * Sums the varlues of an array.
+ * Sums the values of an array.
  */
-if (!standard_library.math.sum)
-	standard_library.math.sum = function(ar) {
+standard_library.math.Sum.sum = function(ar) {
+	try {
 		var a = 0;
 		for (var i = 0; i < ar.length; i++) {
-			a = a + ar[i];
+			if (typeof ar[i] === "number") {
+				a = a + ar[i];
+			} else {
+				throw "Error: " + ar[i] + " is not a number.";
+			}
 		}
 		return a;
-	};
+	} catch (error) {
+		//alert(error);
+		return undefined;
+	}
+};
