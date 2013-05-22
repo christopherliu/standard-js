@@ -1,6 +1,5 @@
 <html>
 	<head>
-
 		<!-- Load jQuery and QUnit -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 		<script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
@@ -11,90 +10,89 @@
 		<script src="../math/Sum.js"></script>
 		<script>
 			/*
-            var standardJS = {
-                "runTests" : function() {
-                    test("Utils.EndsWith", function() {
-                        ok(Utils.EndsWith("abc", "c"), "abc ends with c");
-                    });
-                    
-                    
-                    test("true", function() {
-                        ok(true, "true");
-                    });
-                }
-            }; */
-           var standardJS = {
-           		"runTests" : function() {
-           			// RANDOM
-           			module("standard_library.math.Random.generateRandomInteger");
-           			
-           			test("Standard case, no random function given", function() {
-           				var result = standard_library.math.Random.generateRandomInteger(10, 11);
-           				ok(result >= 10 && result <= 11, "Between 10 and 11, generated " + result);
-           			});
-           			
-           			test("Negative min case, no random function given", function() {
-           				var result = standard_library.math.Random.generateRandomInteger(-10, 11);
-           				ok(result >= -10 && result <= 11, "Between -10 and 11, generated " + result);
-           			});
-           			
-           			test("Negative min and negative max case, no random function given", function() {
-           				var result = standard_library.math.Random.generateRandomInteger(-15, -10);
-           				ok(result >= -15 && result <= -10, "Between -15 and -10, generated " + result);
-           			});
-           			
-           			test("Lower max than min, no random function given", function() {
-           				var result = standard_library.math.Random.generateRandomInteger(15, 10);
-           				ok(result === undefined, "Between 15 and 10, generated " + result);
-           			});
-           			
-           			test("Min is not a number, no random function given", function() {
-           				var result = standard_library.math.Random.generateRandomInteger("a", 10);
-           				ok(result === undefined, "Between a and 10, generated " + result);
-           			});
-           			
-           			test("Max is not a number, no random function given", function() {
-           				var result = standard_library.math.Random.generateRandomInteger(10, "a");
-           				ok(result === undefined, "Between 10 and a, generated " + result);
-           			});
-           			
-           			// SUM
-           			module("standard_library.math.Sum.sum");
-           			
-           			test("Standard case, array with numbers", function() {
-           				var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-           				var result = standard_library.math.Sum.sum(array);
-           				ok(result === 55, "Array 1 to 10, sums to " + result);
-           			});
-           			
-           			test("Array with negative numbers", function() {
-           				var array = [-3, -2, -1, 0, 1, 2, 3];
-           				var result = standard_library.math.Sum.sum(array);
-           				ok(result === 0, "Array of strings from -3 to 3, sums to " + result);
-           			});
-           			
-           			test("Array with strings case", function() {
-           				// Just to say this works. Not to say it should be used like this.
-           				var array = ["1", "2", "3", "4"];
-           				var result = standard_library.math.Sum.sum(array);
-           				ok(result === undefined, "Array of strings, sums to " + result);
-           			});
-           			
-           			test("Not an array case", function() {
-           				// Just to say this works. Not to say it should be used like this.
-           				var array = 0;
-           				var result = standard_library.math.Sum.sum(array);
-           				ok(result === undefined, "Not an array, sums to " + result);
-           			});
-           		}
-           }
+			 var standardJS = {
+			 "runTests" : function() {
+			 test("Utils.EndsWith", function() {
+			 ok(Utils.EndsWith("abc", "c"), "abc ends with c");
+			 });
+
+			 test("true", function() {
+			 ok(true, "true");
+			 });
+			 }
+			 }; */
+			var standardJS = {
+				"runTests" : function() {
+					// RANDOM
+					module("standard_library.math.Random.generateRandomInteger");
+
+					test("Standard case, no random function given", function() {
+						var result = standard_library.math.Random.generateRandomInteger(10, 11);
+						ok(result >= 10 && result <= 11, "Between 10 and 11, generated " + result);
+					});
+
+					test("Negative min case, no random function given", function() {
+						var result = standard_library.math.Random.generateRandomInteger(-10, 11);
+						ok(result >= -10 && result <= 11, "Between -10 and 11, generated " + result);
+					});
+
+					test("Negative min and negative max case, no random function given", function() {
+						var result = standard_library.math.Random.generateRandomInteger(-15, -10);
+						ok(result >= -15 && result <= -10, "Between -15 and -10, generated " + result);
+					});
+
+					test("Lower max than min, no random function given", function() {
+						var result = standard_library.math.Random.generateRandomInteger(15, 10);
+						ok(result === undefined, "Between 15 and 10, generated " + result);
+					});
+
+					test("Min is not a number, no random function given", function() {
+						var result = standard_library.math.Random.generateRandomInteger("a", 10);
+						ok(result === undefined, "Between a and 10, generated " + result);
+					});
+
+					test("Max is not a number, no random function given", function() {
+						var result = standard_library.math.Random.generateRandomInteger(10, "a");
+						ok(result === undefined, "Between 10 and a, generated " + result);
+					});
+
+					// SUM
+					module("standard_library.math.Sum.sum");
+
+					test("Standard case, array with numbers", function() {
+						var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+						var result = standard_library.math.Sum.sum(array);
+						ok(result === 55, "Array 1 to 10, sums to " + result);
+					});
+
+					test("Array with negative numbers", function() {
+						var array = [-3, -2, -1, 0, 1, 2, 3];
+						var result = standard_library.math.Sum.sum(array);
+						ok(result === 0, "Array of strings from -3 to 3, sums to " + result);
+					});
+
+					test("Array with strings case", function() {
+						// Just to say this works. Not to say it should be used like this.
+						var array = ["1", "2", "3", "4"];
+						var result = standard_library.math.Sum.sum(array);
+						ok(result === undefined, "Array of strings, sums to " + result);
+					});
+
+					test("Not an array case", function() {
+						// Just to say this works. Not to say it should be used like this.
+						var array = 0;
+						var result = standard_library.math.Sum.sum(array);
+						ok(result === undefined, "Not an array, sums to " + result);
+					});
+				}
+			}
 		</script>
 
 		<!-- This jQuery fragment calls Calculator.runTests() after the document loads -->
 		<script>
-            $(document).ready(function() {
-                standardJS.runTests();
-            });
+			$(document).ready(function() {
+				standardJS.runTests();
+			});
 		</script>
 
 	</head>
