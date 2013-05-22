@@ -1,7 +1,10 @@
+#http://about.travis-ci.org/docs/user/ci-environment/#Node.js-VM-images
 language: node_js
 node_js:
-  - "0.8"
+  - "0.10"
+
+#http://stackoverflow.com/a/13472852/40352
 before_script:
-  - sudo npm install -g grunt
+  - npm install -g grunt
 
 script: grunt test --verbose --force
