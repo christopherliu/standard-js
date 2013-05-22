@@ -1,8 +1,12 @@
 /**
  * Dependencies: Utils, Math, Publisher
  */
-if (!Gaming)
-	var Gaming = {};
+if (!this.standard_library) {
+	this.standard_library = {};
+}
+if (!standard_library.gaming) {
+	standard_library.gaming = {};
+}
 /**
  * Events: roll(ed), force(d), seen
  * 
@@ -12,7 +16,7 @@ if (!Gaming)
  *            random A replacement for the random function, if we choose to
  *            seed.
  */
-Gaming.DiceRoll = function(sides, random) {
+standard_library.gaming.Dice.DiceRoll = function(sides, random) {
 	var self = this;
 	var value;
 	var publisher = new Publisher();
@@ -76,7 +80,7 @@ Gaming.DiceRoll = function(sides, random) {
  * 
  * @example <code>
  //To roll 2d6, reroll one die, and get the end result.
- var myDie = Gaming.RollDice(2,6);
+ var myDie = Dice.RollDice(2,6);
  myDie[0].reroll();
  var mySpeedRoll = myDie.getValue();
  </code>
@@ -84,13 +88,13 @@ Gaming.DiceRoll = function(sides, random) {
  *            random A replacement for the random function, if we choose to
  *            seed.
  * @version NewDice
- * @returns {Gaming.DiceRollCollection}
+ * @returns {Dice.DiceRollCollection}
  */
-Gaming.RollDice = function(numberOfDice, sides, random) {
+standard_library.gaming.Dice.RollDice = function(numberOfDice, sides, random) {
 	var diceRolls = [];
 	var overrideValue = false;
 	for ( var i = 0; i < numberOfDice; i++) {
-		diceRolls.push(new Gaming.DiceRoll(sides, random));
+		diceRolls.push(new Dice.DiceRoll(sides, random));
 	}
 	diceRolls.getValue = function() {
 		return overrideValue || Math.sum(diceRolls.map(function(roll) {
@@ -102,8 +106,8 @@ Gaming.RollDice = function(numberOfDice, sides, random) {
 	};
 	return diceRolls;
 };
-Gaming.TestDice = function() {
-	var myDie = Gaming.RollDice(2, 6);
+standard_library.gaming.Dice.TestDice = function() {
+	var myDie = Dice.RollDice(2, 6);
 	myDie[0].reroll();
 	var mySpeedRoll = myDie.getValue();
 	alert(mySpeedRoll);

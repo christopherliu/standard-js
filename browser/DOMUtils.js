@@ -1,20 +1,20 @@
 /**
  * Dependencies HTMLUtils
- * @name standard_library.DOMUtils
+ * @name standard_library.browser.DOMUtils
  * @namespace
  */
 if (!this.standard_library) {
 	this.standard_library = {};
 }
-if (!standard_library.DOMUtils) {
-	standard_library.DOMUtils = {};
+if (!standard_library.browser.DOMUtils) {
+	standard_library.browser.DOMUtils = {};
 }
 /**
  * Given a DOM element, retrieve an object of all attributes. This behaves funny
  * in IE6: http://www.javascriptkit.com/domref/elementproperties.shtml
  * 
  */
-standard_library.DOMUtils.ExtractAttributes = function _extractAttributes(
+standard_library.browser.DOMUtils.ExtractAttributes = function _extractAttributes(
 		element) {
 	"use strict";
 
@@ -26,10 +26,10 @@ standard_library.DOMUtils.ExtractAttributes = function _extractAttributes(
 	});
 	return attributes;
 };
-standard_library.DOMUtils.GetQueryString = function() {
+standard_library.browser.DOMUtils.GetQueryString = function () {
 	return HTMLUtils.BreakQueryStringIntoParameters(window.location.search.substring(1));
 };
-standard_library.DOMUtils.PostToURL = function(attributes, params) {
+standard_library.browser.DOMUtils.PostToURL = function(attributes, params) {
 	attributes.method = attributes.method || "post";
 
 	// The rest of this code assumes you are not using a library.
