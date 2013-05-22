@@ -11,6 +11,7 @@ if (typeof standard_library.math.Random === "undefined")
 	
 /**
  * Returns a random integer from min to max, inclusive
+ * 
  * @param {Number}
  * 			min		The minimum value the random integer may be.
  * @param {Number}

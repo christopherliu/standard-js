@@ -107,8 +107,41 @@
 					// MISC
 					module("standard_library.utilities.Misc");
 					
-					// STRINGUTILS
-					module("standard_library.utilities.StringUtils");
+					// STARTS WITH
+					module("standard_library.utilities.StringUtils.startsWith");
+					
+					test("Standard case, character", function() {
+						result = standard_library.utilities.StringUtils.startsWith("abc", "a");
+						ok(result, "abc starts with a is " + result);
+					});
+					
+					test("Standard case, string", function() {
+						result = standard_library.utilities.StringUtils.startsWith("Hello world", "Hello");
+						ok(result, "Hello world starts with Hello is " + result);
+					});
+					
+					test("Substring non-existent", function() {
+						result = standard_library.utilities.StringUtils.startsWith("Hello world", "Goodbye");
+						ok(!result, "Hello world starts with Goodbye is " + result);
+					});
+					
+					test("Substring existent but does not starts with", function() {
+						result = standard_library.utilities.StringUtils.startsWith("Hello world", "world");
+						ok(!result, "Hello world starts with world is " + result);
+					});
+					
+					test("Pattern is not a string", function() {
+						result = standard_library.utilities.StringUtils.startsWith("1234", 1);
+						ok(result === undefined, "1234 starts with numberic 1 is " + result);
+					});
+					
+					test("Word is not a string", function() {
+						result = standard_library.utilities.StringUtils.startsWith(1234, "1");
+						ok(result === undefined, "Numberic 1234 starts with 1 is " + result);
+					});
+					
+					// ENDS WITH
+					module("standard_library.utilities.StringUtils.endsWith");
 					
 					test("Standard case, character", function() {
 						result = standard_library.utilities.StringUtils.endsWith("abc", "c");

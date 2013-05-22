@@ -1,7 +1,7 @@
 /**
- * @requires standard_library.core.ECMAScript.v5
- * @name standard_library.browser.DOM
- * @namespace Holds functionality related to manipulating the DOM.
+ * @requires 	standard_library.core.ECMAScript.v5
+ * @name 		standard_library.browser.DOM
+ * @namespace 	Holds functionality related to manipulating the DOM.
  */
 if (typeof standard_library === 'undefined') {
 	var standard_library = {};
