@@ -6,7 +6,7 @@
  *            attachTo Optional shorthand. Makes attachTo[eventName] map to
  *            Event.Set.
  */
-standard_library.core.Event.Event = function(eventName, attachTo) {
+standard_library.core.Event.event = function(eventName, attachTo) {
 	if (!(this instanceof Event)) {
 		return new Event(eventName, attachTo);
 	}
@@ -28,5 +28,4 @@ standard_library.core.Event.Event = function(eventName, attachTo) {
 	if (attachTo) {
 		attachTo[eventName] = this.Set;
 	}
-
 }

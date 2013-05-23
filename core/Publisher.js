@@ -22,7 +22,7 @@
  * this.addSubscriber = publisher.addSubscriber;
  *  </code>
  */
-function standard_library.core.Publisher.publisher(publishingMethodAccessor) {
+standard_library.core.Publisher.publisher = function(publishingMethodAccessor) {
 	// ------------------------------------------------------------------------
 	// Private variables
 	var subscribers = [];

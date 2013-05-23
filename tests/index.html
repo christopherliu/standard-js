@@ -138,20 +138,138 @@
 						ok(result === undefined, "we do becomes " + result);
 					}); */
 					
-					// REMOVE
+					/* // REMOVE
 					module("standard_library.utilities.ArrayUtils.remove");
 					
-					// UNIQUE
+					test("Remove front", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, 0);
+						ok(result === 9, "Remove the first element from array 0 to 9 returns " + array);
+					});
+					
+					test("Remove end", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, 6, 10);
+						ok(result === 6, "Remove 6 to end from array 0 to 9 returns " + array);
+					});
+					
+					test("Remove middle", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, 3, 5);
+						ok(result === 7, "Remove 3 to 5 from array 0 to 9 returns " + array);
+					});
+					
+					test("Negative from", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, -3, 10);
+						ok(result === 7, "Remove -3 to end from array 0 to 9 returns " + array);
+					});
+					
+					test("Special slice test case", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, -1, 10);
+						ok(result === 9, "Remove -1 to end from array 0 to 9 returns " + array);
+					});
+					
+					test("Super large positive from", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, 20);
+						ok(result === 20, "Remove at 20 from array 0 to 9 returns " + array);
+					});
+					
+					test("Super large negative from", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, -20);
+						ok(result === undefined, "Remove at -20 from array 0 to 9 returns " + result);
+					});
+							
+					test("Negative to", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, 5, -3);
+						ok(result === 7, "Remove 5 to -3 from array 0 to 9 returns " + array);
+					});
+					
+					test("Super large positive to", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, 3, 20);
+						ok(result === 3, "Remove 3 to 20 from array 0 to 9 returns " + array);
+					});
+					
+					test("Super large negative to", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, 2, -11);
+						ok(result === undefined, "Remove at -20 from array 0 to 9 returns " + result);
+					});
+					
+					test("Negative from, negative to", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, -5, -3);
+						ok(result === 7, "Remove -5 to -3 from array 0 to 9 returns " + array);
+					});
+					
+					test("Array is not an array", function() {
+						array = 5;
+						result = standard_library.utilities.ArrayUtils.remove(array, 5, 3);
+						ok(result === undefined, "Remove -5 to -3 from array 0 to 9 returns " + result);
+					});
+					
+					test("From is not a number", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, "a", 3);
+						ok(result === undefined, "Remove a to 3 from array 0 to 9 returns " + result);
+					});
+					
+					test("To is not a number", function() {
+						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+						result = standard_library.utilities.ArrayUtils.remove(array, 5, "a");
+						ok(result === undefined, "Remove 5 to a from array 0 to 9 returns " + result);
+					}); */
+					
+					/* // UNIQUE
 					module("standard_library.utilities.ArrayUtils.unique");
 					
 					test("Standard case, no replacement", function() {
 						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 						func = function(value) {
-							return (value >= 8) 
+							return value; 
+						}
+						result = standard_library.utilities.ArrayUtils.unique(array, func);
+						ok(result.toString(), "Array 1 to 10 where uniqueness is itself returns " + result);
+					});
+					
+					test("Simple replacement", function() {
+						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+						func = function(value) {
+							return value % 3; 
 						}
 						result = standard_library.utilities.ArrayUtils.unique(array, func);
 						ok(result.toString(), "Array 1 to 10 where uniqueness is div by 3 returns " + result);
 					});
+					
+					test("String replacement", function() {
+						array = ["hello", "haii", "HELLO", "hEy", "BYE"];
+						func = function(value) {
+							return value.toLowerCase()
+						}
+						result = standard_library.utilities.ArrayUtils.unique(array, func);
+						ok(result.toString(), "hello haii HELLO hEy BYE where uniqueness is not case-sensitive returns " + result);
+					});
+					
+					test("Array is not an array", function() {
+						array = 0
+						func = function(value) {
+							return value
+						}
+						result = standard_library.utilities.ArrayUtils.unique(array, func);
+						ok(result === undefined, "Numberic 0 where uniqueness is the value itself returns " + result);
+					});
+					
+					test("Function is not a function", function() {
+						array = [0, 1, 2, 3, 4]
+						func = 4;
+						result = standard_library.utilities.ArrayUtils.unique(array, func);
+						ok(result === undefined, "Array 0 to 4 where uniqueness is numberic 0 returns " + result);
+					}); */
 					
 					/* // FIND FIRST
 					module("standard_library.utilities.ArrayUtils.findFirst");

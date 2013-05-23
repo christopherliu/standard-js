@@ -19,9 +19,8 @@ if ( typeof standard_library.language.English === "undefined")
  * 			thirdPersonSingular		The verb of the sentence.
  * @returns {String} The correct verb based on the subject.
  */
-standard_library.language.English.conjugateVerb = function(subject, thirdPersonSingular) {
-	"use strict";
-	if (typeof subject !== "string" || typeof thirdPersonSingular !== "string")
+standard_library.language.English.conjugateVerb = function(subject, thirdPersonSingular) {"use strict";
+	if ( typeof subject !== "string" || typeof thirdPersonSingular !== "string")
 		return undefined;
 	if (subject.toLowerCase() === "you" || subject.toLowerCase() === "they" || subject.toLowerCase() === "we" || standard_library.language.English.isPlural(subject)) {
 		if (thirdPersonSingular === "is")
@@ -44,7 +43,6 @@ standard_library.language.English.conjugateVerb = function(subject, thirdPersonS
  * 			word	The subject of the sentence.
  * @returns {Boolean} True if word is plural, false otherwise.
  */
-standard_library.language.English.isPlural = function(word) {
-	"use strict";
+standard_library.language.English.isPlural = function(word) {"use strict";
 	return standard_library.utilities.StringUtils.endsWith(word, 's');
 }
