@@ -11,15 +11,14 @@ if ( typeof standard_library.browser.DOM === "undefined")
 	standard_library.browser.DOM = {};
 
 /**
- * Given a DOM element, retrieve an object containing all attributes. This
- * behaves funny in IE6:
- * http://www.javascriptkit.com/domref/elementproperties.shtml
+ * Given a DOM element, retrieve an object containing all attributes. 
+ * This behaves funny in IE6: http://www.javascriptkit.com/domref/elementproperties.shtml
  *
  * @param {Element}
- *            element An element as specified in
+ *            element	An element as specified in
  *            https://developer.mozilla.org/en-US/docs/Web/API/Element
  */
-standard_library.browser.DOM.ExtractAttributes = function(element) {"use strict";
+standard_library.browser.DOM.extractAttributes = function(element) {"use strict";
 	var attributes = {};
 	Array.prototype.filter.call(element.attributes, function(attrPair) {
 		return attrPair.value !== "";
@@ -43,7 +42,7 @@ standard_library.browser.DOM.ExtractAttributes = function(element) {"use strict"
  *            params Key-value representation of all the values to submit in the
  *            form. These would be <input> tags in HTML.
  */
-standard_library.browser.DOM.PostToURL = function(attributes, params) {"use strict";
+standard_library.browser.DOM.postToURL = function(attributes, params) {"use strict";
 	attributes.method = attributes.method || "post";
 	// The rest of this code assumes you are not using a library.
 	// It can be made less wordy if you use one.

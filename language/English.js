@@ -11,7 +11,7 @@ if ( typeof standard_library.language.English === "undefined")
 	standard_library.language.English = {};
 
 /**
- * Corrects the usage of verbs to the proper tense. [INCOMPLETE]
+ * Corrects the usage of third person singular verbs to the proper tense.
  *
  * @param {String}
  * 			subject					The subject of the sentence.
@@ -20,13 +20,18 @@ if ( typeof standard_library.language.English === "undefined")
  * @returns {String} The correct verb based on the subject.
  */
 standard_library.language.English.conjugateVerb = function(subject, thirdPersonSingular) {
-	if (subject.toLowerCase() === "you" || standard_library.language.English.isPlural(subject)) {
+	"use strict";
+	if (typeof subject !== "string" || typeof thirdPersonSingular !== "string")
+		return undefined;
+	if (subject.toLowerCase() === "you" || subject.toLowerCase() === "they" || subject.toLowerCase() === "we" || standard_library.language.English.isPlural(subject)) {
 		if (thirdPersonSingular === "is")
 			return "are";
 		else if (thirdPersonSingular === "does")
 			return "do";
-		else
+		else if (standard_library.utilities.StringUtils.endsWith(thirdPersonSingular, "s"))
 			return thirdPersonSingular.substring(0, thirdPersonSingular.length - 1);
+		else
+			return undefined;
 	} else {
 		return thirdPersonSingular;
 	}
@@ -40,5 +45,6 @@ standard_library.language.English.conjugateVerb = function(subject, thirdPersonS
  * @returns {Boolean} True if word is plural, false otherwise.
  */
 standard_library.language.English.isPlural = function(word) {
+	"use strict";
 	return standard_library.utilities.StringUtils.endsWith(word, 's');
 }

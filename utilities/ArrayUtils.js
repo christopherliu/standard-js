@@ -1,5 +1,5 @@
 /**
- * @name		standard_library.utilities.ArrayUtils
+ * @name 		standard_library.utilities.ArrayUtils
  * @namespace 	Contains functions which manipulate array objects.
  */
 if ( typeof standard_library === "undefined")
@@ -28,23 +28,29 @@ standard_library.utilities.ArrayUtils.remove = function(array, from, to) {
 };
 
 /**
- * Returns an array that only contains the unique items in the array. Uniqueness
- * is determined by a key that is calculated for each item in the array.
+ * Returns an array that only contains the unique items in the array.
+ * Goes through each element in the array. If have already been added
+ * then it ignores it. Else, it adds the element.
  * 
  * @param {Array}
- * 			array
- * @param {kyFunction}
- * 			function
+ * 			array	The array of data to search through.
+ * @param {Function}
+ * 			fnKey	The function which checks each element in the array 
+ * 					to determine if the element is unique.
+ * @returns {Array} An array with only unique elements.
  */
-standard_library.utilities.ArrayUtils.unique = function(array, keyFunction) {
+standard_library.utilities.ArrayUtils.unique = function(array, fnKey) {
 	"use strict";
 	var _keys = {};
+	if (!Array.isArray(array) || typeof fnKey !== "function")
+		return undefined;
 	return array.filter(function(item) {
-		if (_keys[keyFunction(item)])
+		if (_keys[fnKey(item)]) {
 			return false;
-		else
-			_keys[keyFunction(item)] = true;
-		return true;
+		} else {
+			_keys[fnKey(item)] = true;
+			return true;
+		}
 	});
 };
 
@@ -53,18 +59,21 @@ standard_library.utilities.ArrayUtils.unique = function(array, keyFunction) {
  * the finding function, or false if none found.
  * 
  * @param {Array}
- * 			array			.
+ * 			array	The array of data to search through.
  * @param [Function]
- * 			findFunction
+ * 			fnFind	The function which searches the array;
+ * 					must take in a single parameter of an elemnt
+ * @returns {T} Anything in the array and matches the first element.
  */
-standard_library.utilities.ArrayUtils.findFirst = function(array, findFunction) {
+standard_library.utilities.ArrayUtils.findFirst = function(array, fnFind) {
 	"use strict";
-	if (!Array.isArray(ar) || typeof findFunction === "function") {
+	if (!Array.isArray(array) || typeof fnFind !== "function") {
 		return undefined;
-	else {
+	} else {
 		for (var i = 0, len = array.length; i < len; i++) {
-		if (findFunction(array[i])) {
-			return array[i];
+			if (fnFind(array[i])) {
+				return array[i];
+			}
 		}
 	}
 	return false;

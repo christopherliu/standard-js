@@ -8,173 +8,334 @@
 		<!-- Load modules to be tested -->
 		<script src="../math/Random.js"></script>
 		<script src="../language/English.js"></script>
+		<script src="../gaming/Dice.js"></script>
 		<script src="../utilities/ArrayUtils.js"></script>
 		<script src="../utilities/StringUtils.js"></script>
 		<script>
 			var standardJS = {
 				"runTests" : function() {
-					var result, array;
-
-					// RANDOM
+					var result, array, func;
+					
+					/* // RANDOM
 					module("standard_library.math.Random.generateRandomInteger");
-
+					
 					test("Standard case, no random function given", function() {
 						result = standard_library.math.Random.generateRandomInteger(10, 11);
 						ok(result >= 10 && result <= 11, "Between 10 and 11, generated " + result);
 					});
-
+					
 					test("Negative min case, no random function given", function() {
 						result = standard_library.math.Random.generateRandomInteger(-10, 11);
 						ok(result >= -10 && result <= 11, "Between -10 and 11, generated " + result);
 					});
-
+					
 					test("Negative min and negative max case, no random function given", function() {
 						result = standard_library.math.Random.generateRandomInteger(-15, -10);
 						ok(result >= -15 && result <= -10, "Between -15 and -10, generated " + result);
 					});
-
+					
 					test("Lower max than min, no random function given", function() {
 						result = standard_library.math.Random.generateRandomInteger(15, 10);
 						ok(result === undefined, "Between 15 and 10, generated " + result);
 					});
-
+					
 					test("Min is not a number, no random function given", function() {
 						result = standard_library.math.Random.generateRandomInteger("a", 10);
 						ok(result === undefined, "Between a and 10, generated " + result);
 					});
-
+					
 					test("Max is not a number, no random function given", function() {
 						result = standard_library.math.Random.generateRandomInteger(10, "a");
 						ok(result === undefined, "Between 10 and a, generated " + result);
+					}); */
+					
+					// BROWSER
+					module("standard_library.browser.Browser");
+					
+					// DOM
+					module("standard_library.browser.DOM");
+					
+					// EVENT
+					module("standard_library.core.Event");
+					
+					// PUBLISHER
+					module("standard_library.core.Publisher");
+					
+					// ROLL DICE
+					module("standard_library.gaming.Dice.rollDice");
+					
+					test("Roll dice, one standard die, no random function given", function() {
+						result = standard_library.math.Random.generateRandomInteger(10, "a");
+						ok(result === undefined, "Between 10 and a, generated " + result);
 					});
-
-					// SUM
+					
+					// DICE ROLL
+					module("standard_library.gaming.Dice.DiceRoll");
+					
+					/* // PLURAL
+					module("standard_library.language.English.isPlural");
+					
+					test("Standard case", function() {
+						result = standard_library.language.English.isPlural("teachers");
+						ok(result, "teachers is plural is " + result);
+					});
+					
+					test("Singular case", function() {
+						result = standard_library.language.English.isPlural("teacher");
+						ok(!result, "teacher is plural is " + result);
+					}); */
+					
+					/* // CONJUGATE VERBS
+					module("standard_library.language.English.conjugateVerb");
+					
+					test("Standard case, no change with singular", function() {
+						result = standard_library.language.English.conjugateVerb("teacher", "eats");
+						ok(result === "eats", "teacher eats becomes teacher " + result);
+					});
+					
+					test("Standard change with you", function() {
+						result = standard_library.language.English.conjugateVerb("you", "eats");
+						ok(result === "eat", "you eats becomes you " + result);
+					});
+					
+					test("Are -> is change with they", function() {
+						result = standard_library.language.English.conjugateVerb("they", "is");
+						ok(result === "are", "they is becomes they " + result);
+					});
+					
+					test("Does -> do with we", function() {
+						result = standard_library.language.English.conjugateVerb("we", "does");
+						ok(result === "do", "we does becomes we " + result);
+					});
+					
+					test("Multiple word length subject", function() {
+						result = standard_library.language.English.conjugateVerb("the young girls", "is");
+						ok(result === "are", "the young girls is becomes the young girls " + result);
+					});
+					
+					test("Subject is not a string", function() {
+						result = standard_library.language.English.conjugateVerb(4, "is");
+						ok(result === undefined, "4 is becomes " + result);
+					});
+					
+					test("Third person singular is not a string", function() {
+						result = standard_library.language.English.conjugateVerb("the young girls", 4);
+						ok(result === undefined, "the young girls 4 becomes " + result);
+					});
+					
+					test("Third person singular is not a third person singular, standard", function() {
+						result = standard_library.language.English.conjugateVerb("you", "eat");
+						ok(result === undefined, "you eat becomes " + result);
+					});
+					
+					test("Third person singular is not a third person singular, are", function() {
+						result = standard_library.language.English.conjugateVerb("they", "are");
+						ok(result === undefined, "they are becomes " + result);
+					});
+					
+					test("Third person singular is not a third person singular, do", function() {
+						result = standard_library.language.English.conjugateVerb("they", "do");
+						ok(result === undefined, "we do becomes " + result);
+					}); */
+					
+					// REMOVE
+					module("standard_library.utilities.ArrayUtils.remove");
+					
+					// UNIQUE
+					module("standard_library.utilities.ArrayUtils.unique");
+					
+					test("Standard case, no replacement", function() {
+						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+						func = function(value) {
+							return (value >= 8) 
+						}
+						result = standard_library.utilities.ArrayUtils.unique(array, func);
+						ok(result.toString(), "Array 1 to 10 where uniqueness is div by 3 returns " + result);
+					});
+					
+					/* // FIND FIRST
+					module("standard_library.utilities.ArrayUtils.findFirst");
+					
+					test("Standard case, find first element", function() {
+						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+						func = function(value) {
+							return value === 1;
+						}
+						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
+						ok(result === 1, "There is an element " + result + ", equal to 1, in the array from 1 to 10.");
+					});
+					
+					test("Find element in middle", function() {
+						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+						func = function(value) {
+							return (value % 2 === 0) && (value % 3 === 0);
+						}
+						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
+						ok(result === 6, "There is an element " + result + ", div by 2 and 3, in the array from 1 to 10.");
+					});
+					
+					test("Array of strings", function() {
+						array = ["What", "a", "merry", "day"];
+						func = function(value) {
+							return standard_library.utilities.StringUtils.endsWith(value, "y");
+						}
+						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
+						ok(result === "merry", "There is an element " + result + ", ends with y, in the array What a merry day.");
+					});
+					
+					test("Array of arrays", function() {
+						array = [[1, 2], [1], [], [1, 2, 3]];
+						func = function(value) {
+							return value.length === 3;
+						}
+						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
+						ok(result.toString() === [1, 2, 3].toString(), "There is an element " + result + ", len 0, in the array of arrays.");
+					});
+					
+					test("Element does not exist", function() {
+						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+						func = function(value) {
+							return (value % 2 === 0) && (value % 7 === 0);
+						}
+						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
+						ok(!result, "There is an element div by 2 and 7 in the array from 1 to 10 is " + result);
+					});
+					
+					test("Array is not an array", function() {
+						array = 4;
+						func = function(value) {
+							return (value % 2 === 0) && (value % 3 === 0);
+						}
+						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
+						ok(result === undefined, "Array of 4 and function for divisible by 6 returns " + result);
+					});
+					
+					test("Function is not a function", function() {
+						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+						func = 4;
+						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
+						ok(result === undefined, "Array of 1 to 10 and function of 4 returns " + result);
+					}); */
+					
+					/* // SUM
 					module("standard_library.utilities.ArrayUtils.sum");
-
+					
 					test("Standard case, array with numbers", function() {
 						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 						result = standard_library.utilities.ArrayUtils.sum(array);
 						ok(result === 55, "Array 1 to 10, sums to " + result);
 					});
-
+					
 					test("Array with negative numbers", function() {
 						array = [-3, -2, -1, 0, 1, 2, 3];
 						result = standard_library.utilities.ArrayUtils.sum(array);
 						ok(result === 0, "Array of strings from -3 to 3, sums to " + result);
 					});
-
+					
 					test("Array with strings case", function() {
 						array = ["1", "2", "3", "4"];
 						result = standard_library.utilities.ArrayUtils.sum(array);
 						ok(result === undefined, "Array of strings, sums to " + result);
 					});
-
+					
 					test("Not an array case", function() {
 						array = 0;
 						result = standard_library.utilities.ArrayUtils.sum(array);
 						ok(result === undefined, "Not an array, sums to " + result);
-					});
-
-					// BROWSER
-					module("standard_library.browser.Browser");
-
-					// DOM
-					module("standard_library.browser.DOM");
-
-					// EVENT
-					module("standard_library.core.Event");
-
-					// PUBLISHER
-					module("standard_library.core.Publisher");
-
-					// DICE
-					module("standard_library.gaming.Dice");
-
-					// ENGLISH
-					module("standard_library.language.English");
-
-					test("Standard case", function() {
-						result = standard_library.language.English.isPlural("teachers");
-						ok(result, "teachers is plural " + result);
-					});
-
-					// ARRAYUTILS
-					module("standard_library.utilities.ArrayUtils");
-
+					}); */
+					
 					// HTML
 					module("standard_library.utilities.HTML");
-
+					
 					// MISC
 					module("standard_library.utilities.Misc");
-
-					// STARTS WITH
+					
+					/* // STARTS WITH
 					module("standard_library.utilities.StringUtils.startsWith");
-
+					
 					test("Standard case, character", function() {
 						result = standard_library.utilities.StringUtils.startsWith("abc", "a");
 						ok(result, "abc starts with a is " + result);
 					});
-
+					
 					test("Standard case, string", function() {
 						result = standard_library.utilities.StringUtils.startsWith("Hello world", "Hello");
 						ok(result, "Hello world starts with Hello is " + result);
 					});
-
+					
 					test("Substring non-existent", function() {
 						result = standard_library.utilities.StringUtils.startsWith("Hello world", "Goodbye");
 						ok(!result, "Hello world starts with Goodbye is " + result);
 					});
-
+					
 					test("Substring existent but does not starts with", function() {
 						result = standard_library.utilities.StringUtils.startsWith("Hello world", "world");
 						ok(!result, "Hello world starts with world is " + result);
 					});
-
+					
 					test("Pattern is not a string", function() {
 						result = standard_library.utilities.StringUtils.startsWith("1234", 1);
 						ok(result === undefined, "1234 starts with numberic 1 is " + result);
 					});
-
+					
 					test("Word is not a string", function() {
 						result = standard_library.utilities.StringUtils.startsWith(1234, "1");
 						ok(result === undefined, "Numberic 1234 starts with 1 is " + result);
-					});
-
-					// ENDS WITH
+					}); */
+					
+					/* // ENDS WITH
 					module("standard_library.utilities.StringUtils.endsWith");
-
+					
 					test("Standard case, character", function() {
 						result = standard_library.utilities.StringUtils.endsWith("abc", "c");
 						ok(result, "abc ends with c is " + result);
 					});
-
+					
 					test("Standard case, string", function() {
 						result = standard_library.utilities.StringUtils.endsWith("Hello world", "world");
 						ok(result, "Hello world ends with world is " + result);
 					});
-
+					
 					test("Substring non-existent", function() {
 						result = standard_library.utilities.StringUtils.endsWith("Hello world", "earth");
 						ok(!result, "Hello world ends with earth is " + result);
 					});
-
+					
 					test("Substring existent but does not end with", function() {
 						result = standard_library.utilities.StringUtils.endsWith("Hello world", "Hello");
 						ok(!result, "Hello world ends with Hello is " + result);
 					});
-
+					
 					test("Pattern is not a string", function() {
 						result = standard_library.utilities.StringUtils.endsWith("1234", 4);
 						ok(result === undefined, "1234 ends with numberic 4 is " + result);
 					});
-
+					
 					test("Word is not a string", function() {
 						result = standard_library.utilities.StringUtils.endsWith(1234, "4");
 						ok(result === undefined, "Numberic 1234 ends with 4 is " + result);
-					});
-
+					}); */
+					
 					// SPLIT WITHOUT CAPTURE
 					module("standard_library.utilities.StringUtils.splitWithoutCapture");
+					
+					/* // UNICODE TO ASCII
+					module("standard_library.utilities.StringUtils.makeStringASCIIInvariant");
+					
+					test("No change", function() {
+						result = standard_library.utilities.StringUtils.makeStringASCIIInvariant("La ' la");
+						ok(result === "La ' la", "La ' la turns into " + result);
+					});
+					
+					test("Change", function() {
+						result = standard_library.utilities.StringUtils.makeStringASCIIInvariant("La ’ la");
+						ok(result === "La ' la", "La ’ la turns into " + result);
+					});
+					
+					test("Not a string", function() {
+						result = standard_library.utilities.StringUtils.makeStringASCIIInvariant(3);
+						ok(result === undefined, "Numberic 3 turns into " + result);
+					}); */
 				}
 			}
 		</script>
@@ -185,7 +346,6 @@
 				standardJS.runTests();
 			});
 		</script>
-
 	</head>
 
 	<body>

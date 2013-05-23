@@ -14,20 +14,23 @@ if ( typeof standard_library.gaming.Dice === "undefined")
 
 /**
  * Events: roll(ed), force(d), seen
- * 
+ *
  * @class A single roll of the die.
  * @constructor
  * @param {Number}
  * 			sides	An integer number of sides the dice has.
  * @param {Function}
- *			fnRandom 	A replacement for the random function, 
+ *			fnRandom 	A replacement for the random function,
  * 					if we choose to seed.
  */
 standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
 	var self = this;
 	var value;
-	var publisher = new Publisher();
-
+	var publisher = new Publisher()
+	
+	/*
+	 * @returns {Number} An integer of the dice value rolled.
+	 */
 	function _roll() {
 		value = standard_library.math.Random.generateRandomInteger(1, sides, fnRandom);
 		self.isForced = false;
@@ -51,7 +54,14 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
 			"value" : value
 		});
 	};
+	
+	/**
+	 * @param {Number}
+	 * 			newValue
+	 */
 	this.forceValue = function(newValue) {
+		if (typeof newValue !== "number")
+			return undefined;
 		value = newValue;
 		self.isForced = true;
 		publisher.notifySubscribers({
@@ -59,8 +69,9 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
 			"value" : value
 		});
 	};
+	
 	/**
-	 * Get the value of the die as rolled.
+	 * @returns	{Number} The value of the dice as rolled.
 	 */
 	this.getValue = function() {
 		return value;
@@ -70,10 +81,15 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
 	 */
 	this.hasBeenSeen = false;
 	this.isForced = false;
+	
 	/**
-	 * Reroll the die to produce a new outcome. Returns outcome for reference.
+	 * Reroll the die to produce a new outcome.
 	 */
 	this.reroll = _roll;
+	
+	/**
+	 * 
+	 */
 	this.see = function() {
 		self.hasBeenSeen = true;
 		publisher.notifySubscribers({
@@ -83,27 +99,26 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
 };
 
 /**
- * @returns An array of DiceRolls, with additional methods getValue and
- *          forceValue.
- * 
- * @example <code>
- //To roll 2d6, reroll one die, and get the end result.
- var myDie = Dice.RollDice(2,6);
- myDie[0].reroll();
- var mySpeedRoll = myDie.getValue();
- </code>
+ * @example To roll 2d6, reroll one die, and get the end result.
+ * <code>
+ * var myDie = Dice.RollDice(2,6);
+ * myDie[0].reroll();
+ * var mySpeedRoll = myDie.getValue();
+ * </code>
+ *
+ * @param {Number}
+ * 			numDice		The number of dice there are.
+ * @param {Number}
+ * 			sides		The number of sides each dice has.
  * @param {Function}
- *            random A replacement for the random function, if we choose to
- *            seed.
- * @version NewDice
- * @returns {Dice.DiceRollCollection}
+ *            random	A replacement for the random function, if we choose to seed.
+ * @returns {Dice.DiceRollCollection} An array of DiceRolls, with additional methods getValue and forceValue.
  */
-standard_library.gaming.Dice.rollDice = function(numberOfDice, sides, random) {
-	"use strict";
+standard_library.gaming.Dice.rollDice = function(numDice, sides, random) {"use strict";
 	var diceRolls = [];
 	var overrideValue = false;
-	for ( var i = 0; i < numberOfDice; i++) {
-		diceRolls.push(new Dice.DiceRoll(sides, random));
+	for (var i = 0; i < numDice; i++) {
+		diceRolls.push(new standard_library.gaming.Dice.DiceRoll(sides, random));
 	}
 	diceRolls.getValue = function() {
 		return overrideValue || standard_library.math.Sum.sum(diceRolls.map(function(roll) {
@@ -116,8 +131,7 @@ standard_library.gaming.Dice.rollDice = function(numberOfDice, sides, random) {
 	return diceRolls;
 };
 
-standard_library.gaming.Dice.testDice = function() {
-	"use strict";
+standard_library.gaming.Dice.testDice = function() {"use strict";
 	var myDie = Dice.RollDice(2, 6);
 	myDie[0].reroll();
 	var mySpeedRoll = myDie.getValue();
