@@ -1,4 +1,5 @@
 module.exports = function (grunt) {
+	//See: https://github.com/Krinkle/travis-ci-node-and-browser-qunit
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-qunit');
 

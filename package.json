@@ -1,4 +1,4 @@
-{ /* https://github.com/Krinkle/travis-ci-node-and-browser-qunit */
+{
   "name": "standard-js",
   "description": "A standard JavaScript library",
   "version": "0.1",

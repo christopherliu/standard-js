@@ -1,8 +1,7 @@
 # Standard JavaScript Library
-
-From https://github.com/christopherliu/standard-js
 [![Build Status](https://api.travis-ci.org/christopherliu/standard-js.png?branch=master)](https://travis-ci.org/christopherliu/standard-js)
 
+From https://github.com/christopherliu/standard-js
 
 ## Mission
 
@@ -54,6 +53,7 @@ Here are links to the other stuff I use in many of my projects:
  * [Underscore.js](http://documentcloud.github.com/underscore/#isEqual)
  * [JSON](https://github.com/douglascrockford/JSON-js)
  * [List of shims and polyfills (implement functionality in old browsers)](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills)
+ * RequireJS
 
 This additional list was everything of use I found on GitHub, last I checked (standard stuff only, no DOM-specific stuff).
 
@@ -66,12 +66,12 @@ This additional list was everything of use I found on GitHub, last I checked (st
  
 ## TODO
  * Mention compressors
- * Mention dependency loaders
- * Finish dependency loading
+ * Separate polyfill
+ * Pick license
+ * Update directory list
  
 ## Contributing to standard-js
 StandardJS uses the [JSDoc](http://usejsdoc.org/) set of conventions, as well as the standard Eclipse/Aptana autoformatting (Ctrl-Shift-F, 80 characters per line).
 
 ## License
-
 This code is not ready, so a license has not been chosen yet. (Default proprietary).
