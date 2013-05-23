@@ -32,12 +32,11 @@ if ( typeof standard_library.core.Publisher === "undefined")
  *  </code>
  */
 standard_library.core.Publisher.Publisher = function(publishingMethodAccessor) {
+	"use strict";
 	// ------------------------------------------------------------------------
 	// Private variables
 	var subscribers = [];
-	var debug = ( typeof TraceJS !== 'undefined' ? TraceJS.GetLogger("debug", "Publisher") : function() {
-
-	});
+	var debug = ( typeof TraceJS !== 'undefined' ? TraceJS.GetLogger("debug", "Publisher") : function() { });
 	if (!publishingMethodAccessor)
 		publishingMethodAccessor = this;
 
@@ -70,11 +69,10 @@ standard_library.core.Publisher.Publisher = function(publishingMethodAccessor) {
 	/**
 	 * @param {Object}
 	 * 			subscriber	A dictionary mapping the names of events to
-	 *         			    functions that respond to them.
-	 * @return {Object} Event who is interested in seeing the results of the dice.
+	 *         			    functions which respond to them.
+	 * @return {Object} 
 	 */
 	this.addSubscriber = function(subscriber) {
-		debug("addSubscriber", subscriber);
 		subscribers[subscribers.length] = subscriber;
 		return subscriber;
 	};
@@ -88,6 +86,7 @@ standard_library.core.Publisher.Publisher = function(publishingMethodAccessor) {
 
 	/**
 	 * Removes one subscriber from the array.
+	 * 
 	 * @param {Object}
 	 * 			subscriber	A dictionary mapping the names of events to
 	 * 						functions which respond to them. 
@@ -100,4 +99,4 @@ standard_library.core.Publisher.Publisher = function(publishingMethodAccessor) {
 			}
 		}
 	};
-}
+};

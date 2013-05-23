@@ -13,26 +13,28 @@ if ( typeof standard_library.utilities.HTML === "undefined")
 
 /**
  * Given a query string, break it apart into an object.
+ * Query strings are the data in a URL after the '?'
  * Handles arrays using PHP/ASP conventions: http://stackoverflow.com/a/1746566/40352
  * Note: Not all frameworks will support this behavior.
  *
  * @example HTML.breakQueryStringIntoParameters("fox=animal") === {"fox": "animal"}
  * @example HTML.breakQueryStringIntoParameters("array[]=1&array[]=2") === {"array": [1,2]}
  * @example HTML.breakQueryStringIntoParameters("") === {}
- * 
+ *
  * @param {String}
  * 			queryString	The string which is to be broken.
  * @returns {Object} Object of the string after it has been broken up.
  */
-standard_library.utilities.HTML.breakQueryStringIntoParameters = function(queryString) {
+standard_library.utilities.HTML.breakQueryStringIntoParameters = function(queryString) {"use strict";
 	// TODO Maybe update with better version.
 	// http://stackoverflow.com/q/901115/40352
 	// Regex would be slower but this method needs to fix +.
-	"use strict";
-	var params = {};
+	if (typeof queryString !== "string")
+		return undefined;
+	var	params = {};
 	queryString.split("&").map(function(a) {
 		return a.split("=");
-	}).forEach( function(fieldValuePair) {
+	}).forEach(function(fieldValuePair) {
 		var key = decodeURI(fieldValuePair[0]);
 		var value = decodeURI(fieldValuePair[1]);
 		if (standard_library.utilities.StringUtils.endsWith(key, '[]')) {
@@ -47,6 +49,7 @@ standard_library.utilities.HTML.breakQueryStringIntoParameters = function(queryS
 	});
 	return params;
 };
+
 /**
  * Given an object with properties, creates an attribute string that can be used
  * in an HTML tag.
@@ -60,14 +63,14 @@ standard_library.utilities.HTML.buildAttributeString = function(attributes) {
 		return sprintf(' %s="%s"', key, attributes[key]);
 	}).join("");
 };
+
 /**
  * Given an object, creates a query string that can be used in a URL. Handles
  * arrays using PHP/ASP conventions: http://stackoverflow.com/a/1746566/40352
  * (Not all frameworks will support this behavior)
  *
  * @example HEMLEntityUtils.BuildQueryString({"fox": "animal"}) === "fox=animal"
- *          HTML.BuildQueryString({"array": [1,2]}) ===
- *          "array[]=1&array[]=2"
+ *          HTML.BuildQueryString({"array": [1,2]}) === "array[]=1&array[]=2"
  */
 standard_library.utilities.HTML.buildQueryString = function(fieldValuePairs) {
 	return Object.keys(fieldValuePairs || {}).map(function(key) {
@@ -79,6 +82,7 @@ standard_library.utilities.HTML.buildQueryString = function(fieldValuePairs) {
 		return sprintf('%s=%s', encodeURI(key), encodeURI(fieldValuePairs[key]));
 	}).join("&");
 };
+
 /**
  * Converts any string to a form suitable for use as an HTML classname. The
  * requirements for an HTML classname are as follows:
@@ -90,6 +94,7 @@ standard_library.utilities.HTML.convertToClass = function(s) {
 
 	return s.replace(INVALID_CLASS_CHARACTERS, "_").replace(INVALID_STARTING_CHARACTERS, "");
 };
+
 /**
  * Converts any string to a form suitable for use as an HTML ID. The
  * requirements for an HTML ID are as follows.
@@ -104,6 +109,7 @@ standard_library.utilities.HTML.convertToID = function(s) {
 
 	return s.replace(INVALID_ID_CHARACTERS, "_").replace(INVALID_STARTING_CHARACTERS, "");
 };
+
 /**
  * http://stackoverflow.com/a/9609450
  *
@@ -143,7 +149,7 @@ standard_library.utilities.HTML.DecodeEntities = (function() {
 	 */
 
 	return decodeHTMLEntities;
-})();
+});
 
 /**
  * Converts a string to a slug that can be part of a URL. For example, "Tim's

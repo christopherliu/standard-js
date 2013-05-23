@@ -1,3 +1,7 @@
+/**
+ * @name 		standard_library.utilities.Misc
+ * @namespace 	Miscelleanous functions which provide extra functionality are placed here.
+ */
 if ( typeof standard_library === "undefined")
 	var standard_library = {};
 if ( typeof standard_library.utilities === "undefined")
@@ -6,25 +10,14 @@ if ( typeof standard_library.utilities.Misc === "undefined")
 	standard_library.utilities.Misc = {};
 
 /**
- * Similar to Array.prototype.map construct, but for Objects. Only includes
- * properties of the object itself, and not its prototypes.
+ * Once condition is true, run action. Otherwise, wait for a bit.
  * 
- * @deprecated use Object.keys()
+ * @param {Function}
+ * 			condition	A function which returns true when the condition is true.
+ * @param {Function}
+ * 			action		A function which performs a series of function calls.
  */
-//Object/miscellaneous
-standard_library.utilities.Misc.ForEachOwnProperty = function(obj, testFunction) {
-	for ( var propertyName in obj) {
-		if (obj.hasOwnProperty(propertyName)) {
-			testFunction(propertyName, obj[propertyName]);
-		}
-	}
-};
-
-/**
- * Once condition is true, run action.
- */
-//Miscellaneous/utils???
-standard_library.utilities.Misc.Once = function (condition, action) {
+standard_library.utilities.Misc.runOnce = function (condition, action) {
 	function wait() {
 		if (condition()) {
 			action();
