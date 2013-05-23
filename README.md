@@ -1,6 +1,7 @@
 # Standard JavaScript Library
 
 From https://github.com/christopherliu/standard-js
+[![Build Status](https://api.travis-ci.org/christopherliu/standard-js.png?branch=master)](https://travis-ci.org/christopherliu/standard-js)
 
 
 ## Mission
@@ -66,6 +67,7 @@ This additional list was everything of use I found on GitHub, last I checked (st
 ## TODO
  * Mention compressors
  * Mention dependency loaders
+ * Finish dependency loading
  
 ## Contributing to standard-js
 StandardJS uses the [JSDoc](http://usejsdoc.org/) set of conventions, as well as the standard Eclipse/Aptana autoformatting (Ctrl-Shift-F, 80 characters per line).
