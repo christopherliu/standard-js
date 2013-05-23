@@ -5,7 +5,7 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		jshint: {
-			files: ['*.js', '*.js'],
+			files: ['*.js', '*/*.js'],
 			options: {
 				smarttabs: true
 			}
