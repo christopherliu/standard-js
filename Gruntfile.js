@@ -5,13 +5,13 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		jshint: {
-			all: ['*.js', '*.js'],
+			files: ['*.js', '*.js'],
 			options: {
 				smarttabs: true
 			}
 		},
 		qunit: {
-			all: ['test/index.html']
+			files: ['test/index.html']
 		}
 	});
 
