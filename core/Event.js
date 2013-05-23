@@ -1,12 +1,21 @@
 /**
- * 
- * @returns An Event object that can be bound.
- * 
+ * @name 		standard_library.core.Event
+ * @namespace 	Provides information on events.
+ */
+if ( typeof standard_library === "undefined")
+	var standard_library = {};
+if ( typeof standard_library.core === "undefined")
+	standard_library.core = {};
+if ( typeof standard_library.core.Event === "undefined")
+	standard_library.core.Event = {};
+
+/**
  * @param {Object}
  *            attachTo Optional shorthand. Makes attachTo[eventName] map to
  *            Event.Set.
+ * @returns An Event object that can be bound.
  */
-standard_library.core.Event.event = function(eventName, attachTo) {
+standard_library.core.Event.Event = function(eventName, attachTo) {
 	if (!(this instanceof Event)) {
 		return new Event(eventName, attachTo);
 	}

@@ -21,13 +21,13 @@ if (typeof standard_library.math.Random === "undefined")
  */
 standard_library.math.Random.generateRandomInteger = function(min, max, fnRandom) {
 	"use strict";
-	if (typeof min !== "number" || typeof max !== "number")
+	if (typeof min !== "number" || typeof max !== "number" || (fnRandom && typeof fnRandom !== "function"))
 		return undefined;
 	else if (max < min)
 		return undefined;
 	
 	// If there is a provided function,
-	if (fnRandom && typeof fnRandom === "function")
+	if (fnRandom)
 		return min + Math.floor(fnRandom() * (max - min + 1));
 	// Else, use the default javascript function.
 	else

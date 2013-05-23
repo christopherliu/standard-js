@@ -6,15 +6,23 @@
 		<link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css" type="text/css" media="screen" />
 
 		<!-- Load modules to be tested -->
-		<script src="../math/Random.js"></script>
-		<script src="../language/English.js"></script>
+		<script src="../browser/Browser.js"></script>
+		<script src="../browser/DOM.js"></script>
+		<script src="../core/Event.js"></script>
+		<script src="../core/Publisher.js"></script>
 		<script src="../gaming/Dice.js"></script>
+		<script src="../language/English.js"></script>
+		<script src="../math/Random.js"></script>
 		<script src="../utilities/ArrayUtils.js"></script>
+		<script src="../utilities/HTML.js"></script>
+		<script src="../utilities/Misc.js"></script>
 		<script src="../utilities/StringUtils.js"></script>
+		
+		<!-- Add test cases to test -->
 		<script>
 			var standardJS = {
 				"runTests" : function() {
-					var result, array, func;
+					var result, array, func, die;
 					
 					/* // RANDOM
 					module("standard_library.math.Random.generateRandomInteger");
@@ -34,6 +42,14 @@
 						ok(result >= -15 && result <= -10, "Between -15 and -10, generated " + result);
 					});
 					
+					test("Random function given", function() {
+						func = function() {
+							return 1;
+						}
+						result = standard_library.math.Random.generateRandomInteger(4, 5, func);
+						ok(result === 6, "Random which always returns 1 with min and max of 4 and 5 generated " + result);
+					});
+					
 					test("Lower max than min, no random function given", function() {
 						result = standard_library.math.Random.generateRandomInteger(15, 10);
 						ok(result === undefined, "Between 15 and 10, generated " + result);
@@ -47,6 +63,12 @@
 					test("Max is not a number, no random function given", function() {
 						result = standard_library.math.Random.generateRandomInteger(10, "a");
 						ok(result === undefined, "Between 10 and a, generated " + result);
+					});
+					
+					test("fnRandom is not a random function", function() {
+						func = 4;
+						result = standard_library.math.Random.generateRandomInteger(4, 5, func);
+						ok(result === undefined, "Random which is numberic 4, generated " + result);
 					}); */
 					
 					// BROWSER
@@ -61,13 +83,70 @@
 					// PUBLISHER
 					module("standard_library.core.Publisher");
 					
-					// ROLL DICE
+					/* // ROLL DICE
 					module("standard_library.gaming.Dice.rollDice");
 					
-					test("Roll dice, one standard die, no random function given", function() {
-						result = standard_library.math.Random.generateRandomInteger(10, "a");
-						ok(result === undefined, "Between 10 and a, generated " + result);
+					test("One standard die, no random function given", function() {
+						die = standard_library.gaming.Dice.rollDice(1, 6);
+						result = die.getValue();
+						ok(0 < result && result <= 6, "One 6-sided die generated " + result);
 					});
+					
+					test("One 1-sided die, no random function given", function() {
+						die = standard_library.gaming.Dice.rollDice(1, 1);
+						result = die.getValue();
+						ok(result === 1, "One 1-sided die generated " + result);
+					});
+					
+					test("Five 12-sided die, no random function given", function() {
+						die = standard_library.gaming.Dice.rollDice(5, 12);
+						result = die.getValue();
+						ok(0 < result && result <= 72, "Five 12-sided die generated " + result);
+					});
+					
+					test("Random function given", function() {
+						func = function() {
+							return 1;
+						}
+						die = standard_library.gaming.Dice.rollDice(1, 6, func);
+						result = die.getValue();
+						ok(result === 7, "Random function which always return 1 generated " + result);
+					});
+					
+					test("No dice, no random function given", function() {
+						die = standard_library.gaming.Dice.rollDice(0, 6);
+						result = die.getValue();
+						ok(result === 0, "No dice generated " + result);
+					});
+					
+					test("No sides, no random function given", function() {
+						die = standard_library.gaming.Dice.rollDice(1, 0);
+						result = die.getValue();
+						ok(result === undefined, "One 0-sided die generated " + result);
+					});
+					
+					test("Forced value, no random function given", function() {
+						die = standard_library.gaming.Dice.rollDice(5, 12);
+						die.forceValue(1000);
+						result = die.getValue();
+						ok(result === 1000, "Forced-value die of 1000 generated " + result);
+					});
+					
+					test("numDice is not a number", function() {
+						result = standard_library.gaming.Dice.rollDice("a", 6);
+						ok(result === undefined, "numDice is 'a' results in " + result);
+					});
+					
+					test("sides is not a number", function() {
+						result = standard_library.gaming.Dice.rollDice(1, "a");
+						ok(result === undefined, "sides is 'a' results in " + result);
+					});
+					
+					test("fnRandom is not a functon", function() {
+						func = 4;
+						result = standard_library.gaming.Dice.rollDice(1, 6, func);
+						ok(result === undefined, "fnRandom is numberic 4 results in " + result);
+					}); */
 					
 					// DICE ROLL
 					module("standard_library.gaming.Dice.DiceRoll");
@@ -144,85 +223,85 @@
 					test("Remove front", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 0);
-						ok(result === 9, "Remove the first element from array 0 to 9 returns " + array);
+						ok(result === 9, "Remove the first element from array 0 to 9 returned " + array);
 					});
 					
 					test("Remove end", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 6, 10);
-						ok(result === 6, "Remove 6 to end from array 0 to 9 returns " + array);
+						ok(result === 6, "Remove 6 to end from array 0 to 9 returned " + array);
 					});
 					
 					test("Remove middle", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 3, 5);
-						ok(result === 7, "Remove 3 to 5 from array 0 to 9 returns " + array);
+						ok(result === 7, "Remove 3 to 5 from array 0 to 9 returned " + array);
 					});
 					
 					test("Negative from", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, -3, 10);
-						ok(result === 7, "Remove -3 to end from array 0 to 9 returns " + array);
+						ok(result === 7, "Remove -3 to end from array 0 to 9 returned " + array);
 					});
 					
 					test("Special slice test case", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, -1, 10);
-						ok(result === 9, "Remove -1 to end from array 0 to 9 returns " + array);
+						ok(result === 9, "Remove -1 to end from array 0 to 9 returned " + array);
 					});
 					
 					test("Super large positive from", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 20);
-						ok(result === 20, "Remove at 20 from array 0 to 9 returns " + array);
+						ok(result === 20, "Remove at 20 from array 0 to 9 returned " + array);
 					});
 					
 					test("Super large negative from", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, -20);
-						ok(result === undefined, "Remove at -20 from array 0 to 9 returns " + result);
+						ok(result === undefined, "Remove at -20 from array 0 to 9 returned " + result);
 					});
 							
 					test("Negative to", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 5, -3);
-						ok(result === 7, "Remove 5 to -3 from array 0 to 9 returns " + array);
+						ok(result === 7, "Remove 5 to -3 from array 0 to 9 returned " + array);
 					});
 					
 					test("Super large positive to", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 3, 20);
-						ok(result === 3, "Remove 3 to 20 from array 0 to 9 returns " + array);
+						ok(result === 3, "Remove 3 to 20 from array 0 to 9 returned " + array);
 					});
 					
 					test("Super large negative to", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 2, -11);
-						ok(result === undefined, "Remove at -20 from array 0 to 9 returns " + result);
+						ok(result === undefined, "Remove at -20 from array 0 to 9 returned " + result);
 					});
 					
 					test("Negative from, negative to", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, -5, -3);
-						ok(result === 7, "Remove -5 to -3 from array 0 to 9 returns " + array);
+						ok(result === 7, "Remove -5 to -3 from array 0 to 9 returned " + array);
 					});
 					
 					test("Array is not an array", function() {
 						array = 5;
 						result = standard_library.utilities.ArrayUtils.remove(array, 5, 3);
-						ok(result === undefined, "Remove -5 to -3 from array 0 to 9 returns " + result);
+						ok(result === undefined, "Remove -5 to -3 from array 0 to 9 returned " + result);
 					});
 					
 					test("From is not a number", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, "a", 3);
-						ok(result === undefined, "Remove a to 3 from array 0 to 9 returns " + result);
+						ok(result === undefined, "Remove a to 3 from array 0 to 9 returned " + result);
 					});
 					
 					test("To is not a number", function() {
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 5, "a");
-						ok(result === undefined, "Remove 5 to a from array 0 to 9 returns " + result);
+						ok(result === undefined, "Remove 5 to a from array 0 to 9 returned " + result);
 					}); */
 					
 					/* // UNIQUE
@@ -234,7 +313,7 @@
 							return value; 
 						}
 						result = standard_library.utilities.ArrayUtils.unique(array, func);
-						ok(result.toString(), "Array 1 to 10 where uniqueness is itself returns " + result);
+						ok(result.toString(), "Array 1 to 10 where uniqueness is itself returned " + result);
 					});
 					
 					test("Simple replacement", function() {
@@ -243,7 +322,7 @@
 							return value % 3; 
 						}
 						result = standard_library.utilities.ArrayUtils.unique(array, func);
-						ok(result.toString(), "Array 1 to 10 where uniqueness is div by 3 returns " + result);
+						ok(result.toString(), "Array 1 to 10 where uniqueness is div by 3 returned " + result);
 					});
 					
 					test("String replacement", function() {
@@ -252,7 +331,7 @@
 							return value.toLowerCase()
 						}
 						result = standard_library.utilities.ArrayUtils.unique(array, func);
-						ok(result.toString(), "hello haii HELLO hEy BYE where uniqueness is not case-sensitive returns " + result);
+						ok(result.toString(), "hello haii HELLO hEy BYE where uniqueness is not case-sensitive returned " + result);
 					});
 					
 					test("Array is not an array", function() {
@@ -261,14 +340,14 @@
 							return value
 						}
 						result = standard_library.utilities.ArrayUtils.unique(array, func);
-						ok(result === undefined, "Numberic 0 where uniqueness is the value itself returns " + result);
+						ok(result === undefined, "Numberic 0 where uniqueness is the value itself returned " + result);
 					});
 					
 					test("Function is not a function", function() {
 						array = [0, 1, 2, 3, 4]
 						func = 4;
 						result = standard_library.utilities.ArrayUtils.unique(array, func);
-						ok(result === undefined, "Array 0 to 4 where uniqueness is numberic 0 returns " + result);
+						ok(result === undefined, "Array 0 to 4 where uniqueness is numberic 0 returned " + result);
 					}); */
 					
 					/* // FIND FIRST
@@ -325,14 +404,14 @@
 							return (value % 2 === 0) && (value % 3 === 0);
 						}
 						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
-						ok(result === undefined, "Array of 4 and function for divisible by 6 returns " + result);
+						ok(result === undefined, "Array of 4 and function for divisible by 6 returned " + result);
 					});
 					
 					test("Function is not a function", function() {
 						array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 						func = 4;
 						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
-						ok(result === undefined, "Array of 1 to 10 and function of 4 returns " + result);
+						ok(result === undefined, "Array of 1 to 10 and function of 4 returned " + result);
 					}); */
 					
 					/* // SUM
