@@ -17,17 +17,19 @@ if ( typeof standard_library.gaming.Dice === "undefined")
  * 
  * @class A single roll of the die.
  * @constructor
+ * @param {Number}
+ * 			sides	An integer number of sides the dice has.
  * @param {Function}
- *			random 	A replacement for the random function, 
+ *			fnRandom 	A replacement for the random function, 
  * 					if we choose to seed.
  */
-standard_library.gaming.Dice.DiceRoll = function(sides, random) {
+standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
 	var self = this;
 	var value;
 	var publisher = new Publisher();
 
 	function _roll() {
-		value = standard_library.math.Random.generateRandomInteger(1, sides, random);
+		value = standard_library.math.Random.generateRandomInteger(1, sides, fnRandom);
 		self.isForced = false;
 		self.hasBeenSeen = false;
 		publisher.notifySubscribers({
@@ -97,6 +99,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, random) {
  * @returns {Dice.DiceRollCollection}
  */
 standard_library.gaming.Dice.rollDice = function(numberOfDice, sides, random) {
+	"use strict";
 	var diceRolls = [];
 	var overrideValue = false;
 	for ( var i = 0; i < numberOfDice; i++) {

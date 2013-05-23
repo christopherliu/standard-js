@@ -65,4 +65,4 @@ standard_library.browser.DOM.PostToURL = function(attributes, params) {"use stri
 	}
 	document.body.appendChild(form);
 	form.submit();
-}; 
+};

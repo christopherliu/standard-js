@@ -50,11 +50,10 @@ standard_library.utilities.StringUtils.endsWith = function(word, pattern) {
  * this mode, matching any single character requires, e.g., [\s\S]
  *
  * @param {String}
- *            str
+ *            str		The string to be split
  * @param {Regex}
- *            split
+ *            split		The regexp instructions to split the string with.
  */
-//String
 standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split) {
 	var flags = (split.global ? "g" : "") + (split.ignoreCase ? "i" : "") + (split.multiline ? "m" : "");
 	var newRegExp = new RegExp(split.source.replace(/\(([^?][\s\S]*?)\)/g, "(?:$1)"), flags);
@@ -69,12 +68,15 @@ standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split
  *
  * This function takes characters that wouldn't have the same code point in
  * ASCII, and removes or replaces them.
+ * http://www.fileformat.info/info/unicode/char/2019/index.htm
  *
  * @param {UnicodeString}
- *            str
- * @returns {ASCIIFriendlyString}
+ *            str		The string in unicode format.
+ * @returns {ASCIIFriendlyString} The string in ASCII format.
  */
 standard_library.utilities.StringUtils.makeStringASCIIInvariant = function(str) {
-	// http://www.fileformat.info/info/unicode/char/2019/index.htm
-	return str.replace("’", "'");
+	if (typeof str !== "string")
+		return undefined;
+	else
+		return str.replace("’", "'");
 }; 

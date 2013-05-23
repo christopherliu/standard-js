@@ -1,3 +1,7 @@
+/**
+ * @name		standard_library.utilities.ArrayUtils
+ * @namespace 	Contains functions which manipulate array objects.
+ */
 if ( typeof standard_library === "undefined")
 	var standard_library = {};
 if ( typeof standard_library.utilities === "undefined")
@@ -6,12 +10,19 @@ if ( typeof standard_library.utilities.ArrayUtils === "undefined")
 	standard_library.utilities.ArrayUtils = {};
 	
 /**
- * Removes an element, or set of elements, from within an array
+ * Removes an element, or set of elements, from within an array.
+ * Array Remove - By John Resig (MIT Licensed)
+ * 
+ * @param {Array}
+ * 			array	An array with values.
+ * @param {Number}
+ * 			from	
+ * @param {Number}
+ * 			to
+ * @returns {Number} The new length of the array.
  */
-// Array Remove - By John Resig (MIT Licensed)
-//Array
-standard_library.utilities.ArrayUtils.Remove = function(array, from, to) {
-	var rest = array.slice((to || from) + 1 || array.length);
+standard_library.utilities.ArrayUtils.remove = function(array, from, to) {
+	"use strict"
 	array.length = from < 0 ? array.length + from : from;
 	return array.push.apply(array, rest);
 };
@@ -19,11 +30,16 @@ standard_library.utilities.ArrayUtils.Remove = function(array, from, to) {
 /**
  * Returns an array that only contains the unique items in the array. Uniqueness
  * is determined by a key that is calculated for each item in the array.
+ * 
+ * @param {Array}
+ * 			array
+ * @param {kyFunction}
+ * 			function
  */
-//Array
-standard_library.utilities.ArrayUtils.Unique = function(ar, keyFunction) {
+standard_library.utilities.ArrayUtils.unique = function(array, keyFunction) {
+	"use strict";
 	var _keys = {};
-	return ar.filter(function(item) {
+	return array.filter(function(item) {
 		if (_keys[keyFunction(item)])
 			return false;
 		else
@@ -35,12 +51,20 @@ standard_library.utilities.ArrayUtils.Unique = function(ar, keyFunction) {
 /**
  * Similar to Array.prototype.some, but returns the first element that satisfies
  * the finding function, or false if none found.
+ * 
+ * @param {Array}
+ * 			array			.
+ * @param [Function]
+ * 			findFunction
  */
-//Array
-standard_library.utilities.ArrayUtils.FindFirst = function(ar, findFunction) {
-	for (var i = 0, len = ar.length; i < len; i++) {
-		if (findFunction(ar[i])) {
-			return ar[i];
+standard_library.utilities.ArrayUtils.findFirst = function(array, findFunction) {
+	"use strict";
+	if (!Array.isArray(ar) || typeof findFunction === "function") {
+		return undefined;
+	else {
+		for (var i = 0, len = array.length; i < len; i++) {
+		if (findFunction(array[i])) {
+			return array[i];
 		}
 	}
 	return false;
