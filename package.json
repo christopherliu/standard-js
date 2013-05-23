@@ -1,7 +1,7 @@
 {
   "name": "standard-js",
   "description": "A standard JavaScript library",
-  "version": "0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/christopherliu/standard-js",
   "author": {
     "name": "Christopher Liu",
