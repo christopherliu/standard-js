@@ -20,6 +20,9 @@ if ( typeof standard_library.browser.DOM === "undefined")
  */
 standard_library.browser.DOM.extractAttributes = function(element) {"use strict";
 	var attributes = {};
+	if(element instanceof HTMLElement == false) {
+		return undefined;
+	}
 	Array.prototype.filter.call(element.attributes, function(attrPair) {
 		return attrPair.value !== "";
 	}).forEach(function(attrPair) {

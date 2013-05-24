@@ -7,7 +7,6 @@
 
 		<!-- Load modules to be tested -->
 		<script src="../browser/Browser.js"></script>
-		<script src="../browser/DOM.js"></script>
 		<script src="../core/Event.js"></script>
 		<script src="../core/Publisher.js"></script>
 		<script src="../gaming/Dice.js"></script>
@@ -24,7 +23,7 @@
 				"runTests" : function() {
 					var result, array, func, die;
 					
-					// RANDOM
+					/* // RANDOM
 					module("standard_library.math.Random.generateRandomInteger");
 					
 					test("Standard case, no random function given", function() {
@@ -69,13 +68,10 @@
 						func = 4;
 						result = standard_library.math.Random.generateRandomInteger(4, 5, func);
 						ok(result === undefined, "Random which is numberic 4, generated " + result);
-					});
+					}); */
 					
 					// BROWSER
 					module("standard_library.browser.Browser.getQueryString");
-					
-					// DOM
-					module("standard_library.browser.DOM");
 					
 					// EVENT
 					module("standard_library.core.Event");
@@ -83,7 +79,7 @@
 					// PUBLISHER
 					module("standard_library.core.Publisher");
 					
-					// ROLL DICE
+					/* // ROLL DICE
 					module("standard_library.gaming.Dice.rollDice");
 					
 					test("One standard die, no random function given", function() {
@@ -146,12 +142,12 @@
 						func = 4;
 						result = standard_library.gaming.Dice.rollDice(1, 6, func);
 						ok(result === undefined, "fnRandom is numberic 4 results in " + result);
-					});
+					}); */
 					
 					// DICE ROLL
 					module("standard_library.gaming.Dice.DiceRoll");
 					
-					// PLURAL
+					/* // PLURAL
 					module("standard_library.language.English.isPlural");
 					
 					test("Standard case", function() {
@@ -162,9 +158,9 @@
 					test("Singular case", function() {
 						result = standard_library.language.English.isPlural("teacher");
 						ok(!result, "teacher is plural is " + result);
-					});
+					}); */
 					
-					// CONJUGATE VERBS
+					/* // CONJUGATE VERBS
 					module("standard_library.language.English.conjugateVerb");
 					
 					test("Standard case, no change with singular", function() {
@@ -215,9 +211,9 @@
 					test("Third person singular is not a third person singular, do", function() {
 						result = standard_library.language.English.conjugateVerb("they", "do");
 						ok(result === undefined, "we do becomes " + result);
-					}); 
+					}); */ 
 					
-					// REMOVE
+					/* // REMOVE
 					module("standard_library.utilities.ArrayUtils.remove");
 					
 					test("Remove front", function() {
@@ -302,9 +298,9 @@
 						array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 						result = standard_library.utilities.ArrayUtils.remove(array, 5, "a");
 						ok(result === undefined, "Remove 5 to a from array 0 to 9 returned " + result);
-					}); 
+					}); */ 
 					
-					// UNIQUE
+					/* // UNIQUE
 					module("standard_library.utilities.ArrayUtils.unique");
 					
 					test("Standard case, no replacement", function() {
@@ -348,9 +344,9 @@
 						func = 4;
 						result = standard_library.utilities.ArrayUtils.unique(array, func);
 						ok(result === undefined, "Array 0 to 4 where uniqueness is numberic 0 returned " + result);
-					}); 
+					}); */ 
 					
-					// FIND FIRST
+					/* // FIND FIRST
 					module("standard_library.utilities.ArrayUtils.findFirst");
 					
 					test("Standard case, find first element", function() {
@@ -412,9 +408,9 @@
 						func = 4;
 						result = standard_library.utilities.ArrayUtils.findFirst(array, func);
 						ok(result === undefined, "Array of 1 to 10 and function of 4 returned " + result);
-					}); 
+					}); */ 
 					
-					// SUM
+					/* // SUM
 					module("standard_library.utilities.ArrayUtils.sum");
 					
 					test("Standard case, array with numbers", function() {
@@ -439,7 +435,7 @@
 						array = 0;
 						result = standard_library.utilities.ArrayUtils.sum(array);
 						ok(result === undefined, "Not an array, sums to " + result);
-					}); 
+					}); */ 
 					
 					// HTML
 					module("standard_library.utilities.HTML");
@@ -447,7 +443,7 @@
 					// MISC
 					module("standard_library.utilities.Misc");
 					
-					// STARTS WITH
+					/* // STARTS WITH
 					module("standard_library.utilities.StringUtils.startsWith");
 					
 					test("Standard case, character", function() {
@@ -478,9 +474,9 @@
 					test("Word is not a string", function() {
 						result = standard_library.utilities.StringUtils.startsWith(1234, "1");
 						ok(result === undefined, "Numberic 1234 starts with 1 is " + result);
-					}); 
+					}); */ 
 					
-					// ENDS WITH
+					/* // ENDS WITH
 					module("standard_library.utilities.StringUtils.endsWith");
 					
 					test("Standard case, character", function() {
@@ -511,7 +507,7 @@
 					test("Word is not a string", function() {
 						result = standard_library.utilities.StringUtils.endsWith(1234, "4");
 						ok(result === undefined, "Numberic 1234 ends with 4 is " + result);
-					}); 
+					}); */ 
 					
 					// ENDS WITH REGEX
 					module("standard_library.utilities.StringUtils.endsWithRegex");
@@ -519,7 +515,7 @@
 					// SPLIT WITHOUT CAPTURE
 					module("standard_library.utilities.StringUtils.splitWithoutCapture");
 					
-					// UNICODE TO ASCII
+					/* // UNICODE TO ASCII
 					module("standard_library.utilities.StringUtils.makeStringASCIIInvariant");
 					
 					test("No change", function() {
@@ -535,7 +531,7 @@
 					test("Not a string", function() {
 						result = standard_library.utilities.StringUtils.makeStringASCIIInvariant(3);
 						ok(result === undefined, "Numberic 3 turns into " + result);
-					}); 
+					}); */ 
 				}
 			}
 		</script>
