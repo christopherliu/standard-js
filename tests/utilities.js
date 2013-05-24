@@ -109,7 +109,7 @@ test("Simple replacement", function() {
 test("String replacement", function() {
     array = ["hello", "haii", "HELLO", "hEy", "BYE"];
     var func = function(value) {
-        return value.toLowerCase()
+        return value.toLowerCase();
     };
     result = standard_library.utilities.ArrayUtils.unique(array, func);
     ok(result.toString(), "hello haii HELLO hEy BYE where uniqueness is not case-sensitive returned " + result);
@@ -118,14 +118,14 @@ test("String replacement", function() {
 test("Array is not an array", function() {
     array = 0
     var func = function(value) {
-        return value
-    }
+        return value;
+    };
     result = standard_library.utilities.ArrayUtils.unique(array, func);
     ok(result === undefined, "Numberic 0 where uniqueness is the value itself returned " + result);
 });
 
 test("Function is not a function", function() {
-    array = [0, 1, 2, 3, 4]
+    array = [0, 1, 2, 3, 4];
     var func = 4;
     result = standard_library.utilities.ArrayUtils.unique(array, func);
     ok(result === undefined, "Array 0 to 4 where uniqueness is numberic 0 returned " + result);
