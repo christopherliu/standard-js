@@ -18,7 +18,7 @@ if ( typeof standard_library.utilities.StringUtils === "undefined")
  */
 standard_library.utilities.StringUtils.startsWith = function(word, prefix) {"use strict";
 	if ( typeof word !== "string" || typeof prefix !== "string")
-		return undefined
+		return undefined;
 	else
 		return word.slice(0, prefix.length) === prefix;
 };

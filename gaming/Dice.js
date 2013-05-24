@@ -6,11 +6,11 @@
  * @namespace 	Provides dice functionality.
  */
 if ( typeof standard_library === "undefined")
-	var standard_library = {};
+    var standard_library = {};
 if ( typeof standard_library.gaming === "undefined")
-	standard_library.gaming = {};
+    standard_library.gaming = {};
 if ( typeof standard_library.gaming.Dice === "undefined")
-	standard_library.gaming.Dice = {};
+    standard_library.gaming.Dice = {};
 
 /**
  * @class A single roll of the die.
@@ -24,80 +24,80 @@ if ( typeof standard_library.gaming.Dice === "undefined")
  * Events: roll(ed), force(d), seen
  */
 standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
-	var self = this;
-	var value;
-	var publisher = new standard_library.core.Publisher()
+    var self = this;
+    var value;
+    var publisher = new standard_library.core.Publisher();
 
-	/*
-	 * @returns {Number} An integer of the dice value rolled.
-	 */
-	function _roll() {
-		value = standard_library.math.Random.generateRandomInteger(1, sides, fnRandom);
-		self.hasBeenSeen = false;
-		self.isForced = false;
-		publisher.notifySubscribers({
-			"name" : "roll",
-			"value" : value
-		});
-		return value;
-	}
+    /*
+     * @returns {Number} An integer of the dice value rolled.
+     */
+    function _roll() {
+        value = standard_library.math.Random.generateRandomInteger(1, sides, fnRandom);
+        self.hasBeenSeen = false;
+        self.isForced = false;
+        publisher.notifySubscribers({
+            "name" : "roll",
+            "value" : value
+        });
+        return value;
+    }
 
-	_roll();
+    _roll();
 
-	/**
-	 * Subscribers are notified whenever a dice is rerolled (roll event).
-	 *
-	 * @param {Object}
-	 * 			subscriber	A dictionary mapping the names of events
-	 * 						to functions which respond to them.
-	 */
-	this.addSubscriber = function(subscriber) {
-		// TODO this shouldn't notify all old subscribers just because a new one
-		publisher.addSubscriber(subscriber);
-		publisher.notifySubscribers({
-			"name" : "roll",
-			"value" : value
-		});
-	};
+    /**
+     * Subscribers are notified whenever a dice is rerolled (roll event).
+     *
+     * @param {Object}
+     * 			subscriber	A dictionary mapping the names of events
+     * 						to functions which respond to them.
+     */
+    this.addSubscriber = function(subscriber) {
+        // TODO this shouldn't notify all old subscribers just because a new one
+        publisher.addSubscriber(subscriber);
+        publisher.notifySubscribers({
+            "name" : "roll",
+            "value" : value
+        });
+    };
 
-	/**
-	 * @returns	{Number} The value of the dice.
-	 */
-	this.getValue = function() {
-		return value;
-	};
+    /**
+     * @returns	{Number} The value of the dice.
+     */
+    this.getValue = function() {
+        return value;
+    };
 
-	/**
-	 * Take a value and set it to be the new value forcefully
-	 *
-	 * @param {Number}
-	 * 			newValue	The value the dice rolls are to be forced to be.
-	 */
-	this.forceValue = function(newValue) {
-		value = newValue;
-		self.isForced = true;
-		publisher.notifySubscribers({
-			"name" : "force",
-			"value" : value
-		});
-	};
-	
-	// Has someone seen the die yet?
-	this.hasBeenSeen = false;
-	this.isForced = false;
-	
-	// Reroll the die to produce a new outcome.
-	this.reroll = _roll;
-	
-	/**
-	 * Marks the subscribers as seen.
-	 */
-	this.see = function() {
-		self.hasBeenSeen = true;
-		publisher.notifySubscribers({
-			"name" : "seen"
-		});
-	};
+    /**
+     * Take a value and set it to be the new value forcefully
+     *
+     * @param {Number}
+     * 			newValue	The value the dice rolls are to be forced to be.
+     */
+    this.forceValue = function(newValue) {
+        value = newValue;
+        self.isForced = true;
+        publisher.notifySubscribers({
+            "name" : "force",
+            "value" : value
+        });
+    };
+
+    // Has someone seen the die yet?
+    this.hasBeenSeen = false;
+    this.isForced = false;
+
+    // Reroll the die to produce a new outcome.
+    this.reroll = _roll;
+
+    /**
+     * Marks the subscribers as seen.
+     */
+    this.see = function() {
+        self.hasBeenSeen = true;
+        publisher.notifySubscribers({
+            "name" : "seen"
+        });
+    };
 };
 
 /**
@@ -114,27 +114,29 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
  * 			sides		The number of sides each dice has.
  * @param {Function}
  *            random	A replacement for the random function, if we choose to seed.
- * @returns {Dice.DiceRollCollection} An array of DiceRolls, with additional methods getValue and forceValue.
+ * @returns {Dice.DiceRollCollection} An array of DiceRolls, with additional
+ * methods getValue and forceValue.
  */
 standard_library.gaming.Dice.rollDice = function(numDice, sides, fnRandom) {"use strict";
-	var diceRolls = [];
-	var overrideValue = false;
-	if ( typeof numDice !== "number" || typeof sides !== "number" || (fnRandom && typeof fnRandom !== "function"))
-		return undefined;
-	for (var i = 0; i < numDice; i++) {
-		diceRolls.push(new standard_library.gaming.Dice.DiceRoll(sides, fnRandom));
-	}
+    var diceRolls = [];
+    var overrideValue = false;
+    if ( typeof numDice !== "number" || typeof sides !== "number" || (fnRandom && typeof fnRandom !== "function"))
+        return undefined;
+    for (var i = 0; i < numDice; i++) {
+        diceRolls.push(new standard_library.gaming.Dice.DiceRoll(sides, fnRandom));
+    }
 
-	/**
-	 * @returns {Number} The sum of the dice rolls if there is not a forced value.
-	 */
-	diceRolls.getValue = function() {
-		return overrideValue || standard_library.utilities.ArrayUtils.sum(diceRolls.map(function(roll) {
-			return roll.getValue();
-		}));
-	};
-	diceRolls.forceValue = function(newValue) {
-		overrideValue = newValue;
-	};
-	return diceRolls;
+    /**
+     * @returns {Number} The sum of the dice rolls if there is not a forced
+     * value.
+     */
+    diceRolls.getValue = function() {
+        return overrideValue || standard_library.utilities.ArrayUtils.sum(diceRolls.map(function(roll) {
+            return roll.getValue();
+        }));
+    };
+    diceRolls.forceValue = function(newValue) {
+        overrideValue = newValue;
+    };
+    return diceRolls;
 };

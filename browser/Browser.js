@@ -5,16 +5,16 @@
  *            not directly related to the DOM.
  */
 if ( typeof standard_library === "undefined")
-	var standard_library = {};
+    var standard_library = {};
 if ( typeof standard_library.browser === "undefined")
-	standard_library.browser = {};
+    standard_library.browser = {};
 if ( typeof standard_library.browser.Browser === "undefined")
-	standard_library.browser.Browser = {};
+    standard_library.browser.Browser = {};
 
 /**
  * @returns {Object} The query string of the current browser window
  * 					 as key-value pairs.
  */
 standard_library.browser.Browser.getQueryString = function() {"use strict";
-	return standard_library.utilities.HTML.breakQueryStringIntoParameters(window.location.search.substring(1));
+    return standard_library.utilities.HTML.breakQueryStringIntoParameters(window.location.search.substring(1));
 };
