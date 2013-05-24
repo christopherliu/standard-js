@@ -9,14 +9,10 @@ module.exports = function(grunt) {
             files : ['*.js', '*/*.js'],
             options : {
                 //Not an option: jshintignore: '.jshintignore',
-                smarttabs : true
+                smarttabs : true,
+                '-W099' : true
             },
-            ignores : ["core/ECMAScript.v5.js", "core/ES.v5.js"],
-            ignore_warning : {
-                options : {
-                    '-W099' : true
-                }
-            }
+            ignores : ["core/ECMAScript.v5.js", "core/ES.v5.js"]
         },
         qunit : {
             files : ['tests/index.html']
