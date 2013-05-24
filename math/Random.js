@@ -15,8 +15,8 @@ if (typeof standard_library.math.Random === "undefined")
  * @param {Number}
  * 			max		The maximum value the random integer may be.
  * @param {Function}
- *          random 	A replacement for the random function, 
- * 					if we choose to seed.
+ *          random 	A replacement for the random function, used 
+ * 					if we choose to seed. Should return a random number from 0 (inclusive) to 1 (exclusive).
  * @returns {Number} A random integer from min to max, inclusive
  */
 standard_library.math.Random.generateRandomInteger = function(min, max, fnRandom) {

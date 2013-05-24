@@ -26,7 +26,7 @@ if ( typeof standard_library.gaming.Dice === "undefined")
 standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
 	var self = this;
 	var value;
-	var publisher = new standard_library.core.Publisher.Publisher()
+	var publisher = new standard_library.core.Publisher()
 
 	/*
 	 * @returns {Number} An integer of the dice value rolled.
