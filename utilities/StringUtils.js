@@ -13,15 +13,29 @@ if ( typeof standard_library.utilities.StringUtils === "undefined")
  * @param {String}
  * 			word	The string to check on.
  * @param {String}
- * 			str		The substring to check in the string.
- * @returns {Boolean} True if word starts with str, false otherwise.
+ * 			prefix	The substring to check in the string.
+ * @returns {Boolean} True if word starts with prefix, false otherwise.
  */
-standard_library.utilities.StringUtils.startsWith = function(word, str) {
-	"use strict";
-	if ( typeof word !== "string" || typeof str !== "string")
+standard_library.utilities.StringUtils.startsWith = function(word, prefix) {"use strict";
+	if ( typeof word !== "string" || typeof prefix !== "string")
 		return undefined
 	else
-		return word.slice(0, str.length) === str;
+		return word.slice(0, prefix.length) === prefix;
+};
+
+/**
+ * @param {String}
+ * 			word	The string to check on
+ * @param {String}
+ * 			suffix	The substring to check in the string.
+ * @returns {Boolean} True if the world ends with suffix, false otherwise.
+ *
+ */
+standard_library.utilities.StringUtils.endsWith = function(word, suffix) {"use strict";
+	if ( typeof word !== "string" || typeof suffix !== "string")
+		return undefined;
+	else
+		return word.indexOf(suffix, word.length - suffix.length) !== -1;
 };
 
 /**
@@ -31,8 +45,7 @@ standard_library.utilities.StringUtils.startsWith = function(word, str) {
  * 			pattern	The substring to check in the string.
  * @returns {Boolean} True if word ends with str, false otherwise.
  */
-standard_library.utilities.StringUtils.endsWith = function(word, pattern) {
-	"use strict";
+standard_library.utilities.StringUtils.endsWithRegex = function(word, pattern) {"use strict";
 	if ( typeof word !== "string" || typeof pattern !== "string")
 		return undefined;
 	else
@@ -50,11 +63,10 @@ standard_library.utilities.StringUtils.endsWith = function(word, pattern) {
  * this mode, matching any single character requires, e.g., [\s\S]
  *
  * @param {String}
- *            str
+ *            str		The string to be split
  * @param {Regex}
- *            split
+ *            split		The regexp instructions to split the string with.
  */
-//String
 standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split) {
 	var flags = (split.global ? "g" : "") + (split.ignoreCase ? "i" : "") + (split.multiline ? "m" : "");
 	var newRegExp = new RegExp(split.source.replace(/\(([^?][\s\S]*?)\)/g, "(?:$1)"), flags);
@@ -69,12 +81,15 @@ standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split
  *
  * This function takes characters that wouldn't have the same code point in
  * ASCII, and removes or replaces them.
+ * http://www.fileformat.info/info/unicode/char/2019/index.htm
  *
  * @param {UnicodeString}
- *            str
- * @returns {ASCIIFriendlyString}
+ *            str		The string in unicode format.
+ * @returns {ASCIIFriendlyString} The string in ASCII format.
  */
-standard_library.utilities.StringUtils.makeStringASCIIInvariant = function(str) {
-	// http://www.fileformat.info/info/unicode/char/2019/index.htm
-	return str.replace("’", "'");
-}; 
+standard_library.utilities.StringUtils.makeStringASCIIInvariant = function(str) {"use strict";
+	if ( typeof str !== "string")
+		return undefined;
+	else
+		return str.replace("’", "'");
+};
