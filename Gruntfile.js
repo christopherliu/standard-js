@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+    //See: https://github.com/gruntjs/grunt-contrib-jshint
     //See: https://github.com/Krinkle/travis-ci-node-and-browser-qunit
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
@@ -7,12 +8,13 @@ module.exports = function(grunt) {
         jshint : {
             files : ['*.js', '*/*.js'],
             options : {
-                jshintignore: '.jshintignore',
+                //Not an option: jshintignore: '.jshintignore',
                 smarttabs : true
             },
+            ignores : ["core/ECMAScript.v5.js", "core/ES.v5.js"],
             ignore_warning : {
                 options : {
-                    '-W033' : true,
+                    '-W099' : true
                 }
             }
         },

@@ -90,34 +90,34 @@ module("standard_library.utilities.ArrayUtils.unique");
 
 test("Standard case, no replacement", function() {
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    func = function(value) {
+    var func = function(value) {
         return value;
-    }
+    };
     result = standard_library.utilities.ArrayUtils.unique(array, func);
     ok(result.toString(), "Array 1 to 10 where uniqueness is itself returned " + result);
 });
 
 test("Simple replacement", function() {
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    func = function(value) {
+    var func = function(value) {
         return value % 3;
-    }
+    };
     result = standard_library.utilities.ArrayUtils.unique(array, func);
     ok(result.toString(), "Array 1 to 10 where uniqueness is div by 3 returned " + result);
 });
 
 test("String replacement", function() {
     array = ["hello", "haii", "HELLO", "hEy", "BYE"];
-    func = function(value) {
+    var func = function(value) {
         return value.toLowerCase()
-    }
+    };
     result = standard_library.utilities.ArrayUtils.unique(array, func);
     ok(result.toString(), "hello haii HELLO hEy BYE where uniqueness is not case-sensitive returned " + result);
 });
 
 test("Array is not an array", function() {
     array = 0
-    func = function(value) {
+    var func = function(value) {
         return value
     }
     result = standard_library.utilities.ArrayUtils.unique(array, func);
@@ -126,7 +126,7 @@ test("Array is not an array", function() {
 
 test("Function is not a function", function() {
     array = [0, 1, 2, 3, 4]
-    func = 4;
+    var func = 4;
     result = standard_library.utilities.ArrayUtils.unique(array, func);
     ok(result === undefined, "Array 0 to 4 where uniqueness is numberic 0 returned " + result);
 });
@@ -136,61 +136,61 @@ module("standard_library.utilities.ArrayUtils.findFirst");
 
 test("Standard case, find first element", function() {
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    func = function(value) {
+    var func = function(value) {
         return value === 1;
-    }
+    };
     result = standard_library.utilities.ArrayUtils.findFirst(array, func);
     ok(result === 1, "There is an element " + result + ", equal to 1, in the array from 1 to 10.");
 });
 
 test("Find element in middle", function() {
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    func = function(value) {
+    var func = function(value) {
         return (value % 2 === 0) && (value % 3 === 0);
-    }
+    };
     result = standard_library.utilities.ArrayUtils.findFirst(array, func);
     ok(result === 6, "There is an element " + result + ", div by 2 and 3, in the array from 1 to 10.");
 });
 
 test("Array of strings", function() {
     array = ["What", "a", "merry", "day"];
-    func = function(value) {
+    var func = function(value) {
         return standard_library.utilities.StringUtils.endsWith(value, "y");
-    }
+    };
     result = standard_library.utilities.ArrayUtils.findFirst(array, func);
     ok(result === "merry", "There is an element " + result + ", ends with y, in the array What a merry day.");
 });
 
 test("Array of arrays", function() {
     array = [[1, 2], [1], [], [1, 2, 3]];
-    func = function(value) {
+    var func = function(value) {
         return value.length === 3;
-    }
+    };
     result = standard_library.utilities.ArrayUtils.findFirst(array, func);
     ok(result.toString() === [1, 2, 3].toString(), "There is an element " + result + ", len 0, in the array of arrays.");
 });
 
 test("Element does not exist", function() {
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    func = function(value) {
+    var func = function(value) {
         return (value % 2 === 0) && (value % 7 === 0);
-    }
+    };
     result = standard_library.utilities.ArrayUtils.findFirst(array, func);
     ok(!result, "There is an element div by 2 and 7 in the array from 1 to 10 is " + result);
 });
 
 test("Array is not an array", function() {
     array = 4;
-    func = function(value) {
+    var func = function(value) {
         return (value % 2 === 0) && (value % 3 === 0);
-    }
+    };
     result = standard_library.utilities.ArrayUtils.findFirst(array, func);
     ok(result === undefined, "Array of 4 and function for divisible by 6 returned " + result);
 });
 
 test("Function is not a function", function() {
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    func = 4;
+    var func = 4;
     result = standard_library.utilities.ArrayUtils.findFirst(array, func);
     ok(result === undefined, "Array of 1 to 10 and function of 4 returned " + result);
 });

@@ -48,4 +48,4 @@ standard_library.core.Event = function(eventName, attachTo) {
     if (attachTo) {
         attachTo[eventName] = this.Set;
     }
-}
+}; 

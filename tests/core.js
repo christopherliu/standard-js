@@ -27,7 +27,7 @@ asyncTest("standard_library.core.Publisher(): old method", 1, function() {
 				"name" : "red",
 				"parameters" : [ "ok" ]
 			});
-		}
+		};
 	}
 	var p1 = new Publisher1();
 	p1.addSubscriber({
@@ -49,7 +49,7 @@ asyncTest("standard_library.core.Publisher(): new method", 1, function() {
 				// New, array-less named syntax
 				"ret" : [ "ok" ]
 			});
-		}
+		};
 	}
 	var p2 = new Publisher2();
 	p2.addSubscriber({
