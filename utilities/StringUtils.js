@@ -1,13 +1,13 @@
-/**
+﻿/**
  * @name		standard_library.utilities.StringUtils
  * @namespace 	Contains functions which manipulate strings.
  */
 if ( typeof standard_library === "undefined")
-	var standard_library = {};
-if ( typeof standard_library.utilities === "undefined")
-	standard_library.utilities = {};
-if ( typeof standard_library.utilities.StringUtils === "undefined")
-	standard_library.utilities.StringUtils = {};
+    var standard_library = {};
+if (!standard_library.utilities)
+    standard_library.utilities = {};
+if (!standard_library.utilities.StringUtils)
+    standard_library.utilities.StringUtils = {};
 
 /**
  * @param {String}
@@ -17,10 +17,10 @@ if ( typeof standard_library.utilities.StringUtils === "undefined")
  * @returns {Boolean} True if word starts with prefix, false otherwise.
  */
 standard_library.utilities.StringUtils.startsWith = function(word, prefix) {"use strict";
-	if ( typeof word !== "string" || typeof prefix !== "string")
-		return undefined;
-	else
-		return word.slice(0, prefix.length) === prefix;
+    if ( typeof word !== "string" || typeof prefix !== "string")
+        return undefined;
+    else
+        return word.slice(0, prefix.length) === prefix;
 };
 
 /**
@@ -32,10 +32,10 @@ standard_library.utilities.StringUtils.startsWith = function(word, prefix) {"use
  *
  */
 standard_library.utilities.StringUtils.endsWith = function(word, suffix) {"use strict";
-	if ( typeof word !== "string" || typeof suffix !== "string")
-		return undefined;
-	else
-		return word.indexOf(suffix, word.length - suffix.length) !== -1;
+    if ( typeof word !== "string" || typeof suffix !== "string")
+        return undefined;
+    else
+        return word.indexOf(suffix, word.length - suffix.length) !== -1;
 };
 
 /**
@@ -46,10 +46,10 @@ standard_library.utilities.StringUtils.endsWith = function(word, suffix) {"use s
  * @returns {Boolean} True if word ends with str, false otherwise.
  */
 standard_library.utilities.StringUtils.endsWithRegex = function(word, pattern) {"use strict";
-	if ( typeof word !== "string" || typeof pattern !== "string")
-		return undefined;
-	else
-		return !!word.match(pattern + '$');
+    if ( typeof word !== "string" || typeof pattern !== "string")
+        return undefined;
+    else
+        return !!word.match(pattern + '$');
 };
 
 /**
@@ -67,10 +67,10 @@ standard_library.utilities.StringUtils.endsWithRegex = function(word, pattern) {
  * @param {Regex}
  *            split		The regexp instructions to split the string with.
  */
-standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split) {
-	var flags = (split.global ? "g" : "") + (split.ignoreCase ? "i" : "") + (split.multiline ? "m" : "");
-	var newRegExp = new RegExp(split.source.replace(/\(([^?][\s\S]*?)\)/g, "(?:$1)"), flags);
-	return str.split(newRegExp);
+standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split) {"use strict";
+    var flags = (split.global ? "g" : "") + (split.ignoreCase ? "i" : "") + (split.multiline ? "m" : "");
+    var newRegExp = new RegExp(split.source.replace(/\(([^?][\s\S]*?)\)/g, "(?:$1)"), flags);
+    return str.split(newRegExp);
 };
 
 /**
@@ -88,8 +88,8 @@ standard_library.utilities.StringUtils.splitWithoutCapture = function(str, split
  * @returns {ASCIIFriendlyString} The string in ASCII format.
  */
 standard_library.utilities.StringUtils.makeStringASCIIInvariant = function(str) {"use strict";
-	if ( typeof str !== "string")
-		return undefined;
-	else
-		return str.replace("’", "'");
+    if ( typeof str !== "string")
+        return undefined;
+    else
+        return str.replace("’", "'");
 };
