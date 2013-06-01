@@ -326,7 +326,7 @@ module("standard_library.utilities.Misc");
         buildQueryString
         convertToClass
         convertToID
-        DecodeEntities
+        decodeEntities
             decodeHTMLEntities
 makeURLSlug
     Misc

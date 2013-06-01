@@ -120,7 +120,7 @@ standard_library.utilities.HTML.convertToID = function(s) {
  *            str
  * @returns {UnicodeString} Converts &amp; -> &, &lt; -> <, etc.
  */
-standard_library.utilities.HTML.DecodeEntities = (function() {
+standard_library.utilities.HTML.decodeEntities = (function() {
     // this prevents any overhead from creating the object each time
     var element = false;
 
