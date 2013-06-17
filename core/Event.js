@@ -14,7 +14,7 @@ if (!standard_library.core)
  * @formatter:off
  * @example <code>
 function Button() {
-	var onClick = new Event("OnClick", this);
+	var onClick = new standard_library.core.Event("OnClick", this);
 	this.simulateClick = function() {
 		onClick.Call();
 	};
