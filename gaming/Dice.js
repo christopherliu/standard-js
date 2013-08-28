@@ -26,7 +26,7 @@ if ( typeof standard_library.gaming.Dice === "undefined")
 standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
     var self = this;
     var value;
-    var publisher = {}
+    var publisher = {};
     standard_library.core.Publisher.call(this, publisher);
 
     /*
