@@ -26,7 +26,8 @@ if ( typeof standard_library.gaming.Dice === "undefined")
 standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
     var self = this;
     var value;
-    var publisher = new standard_library.core.Publisher();
+    var publisher = {}
+    standard_library.core.Publisher.call(this, publisher);
 
     /*
      * @returns {Number} An integer of the dice value rolled.
@@ -35,15 +36,28 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
         value = standard_library.math.Random.generateRandomInteger(1, sides, fnRandom);
         self.hasBeenSeen = false;
         self.isForced = false;
+        
+        if (!self.timesRolled) {
+            publisher.notifySubscribers({
+                "name" : "reroll"
+            });
+        }
         publisher.notifySubscribers({
             "name" : "roll",
             "value" : value
         });
+        self.timesRolled += 1;
         return value;
     }
+    
+    // Has someone seen the die yet?
+    this.hasBeenSeen = false;
+    this.isForced = false;
+    this.timesRolled = 0;
 
     _roll();
 
+    var addSubscriber = this.addSubscriber;
     /**
      * Subscribers are notified whenever a dice is rerolled (roll event).
      *
@@ -53,7 +67,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
      */
     this.addSubscriber = function(subscriber) {
         // TODO this shouldn't notify all old subscribers just because a new one
-        publisher.addSubscriber(subscriber);
+        addSubscriber(subscriber);
         publisher.notifySubscribers({
             "name" : "roll",
             "value" : value
@@ -81,10 +95,6 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
             "value" : value
         });
     };
-
-    // Has someone seen the die yet?
-    this.hasBeenSeen = false;
-    this.isForced = false;
 
     // Reroll the die to produce a new outcome.
     this.reroll = _roll;
@@ -118,6 +128,7 @@ standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
  * methods getValue and forceValue.
  */
 standard_library.gaming.Dice.rollDice = function(numDice, sides, fnRandom) {"use strict";
+    var publisher = new standard_library.core.Publisher();
     var diceRolls = [];
     var overrideValue = false;
     if ( typeof numDice !== "number" || typeof sides !== "number" || (fnRandom && typeof fnRandom !== "function"))
@@ -130,6 +141,10 @@ standard_library.gaming.Dice.rollDice = function(numDice, sides, fnRandom) {"use
      * @returns {Number} The sum of the dice rolls if there is not a forced
      * value.
      */
+    diceRolls.addSubscriber = function(subscriber) {
+        publisher.addSubscriber(subscriber);
+    };
+    
     diceRolls.getValue = function() {
         return overrideValue || standard_library.utilities.ArrayUtils.sum(diceRolls.map(function(roll) {
             return roll.getValue();
@@ -137,6 +152,9 @@ standard_library.gaming.Dice.rollDice = function(numDice, sides, fnRandom) {"use
     };
     diceRolls.forceValue = function(newValue) {
         overrideValue = newValue;
+        publisher.notifySubscribers({
+            "name" : "overrideValue"
+        });
     };
     return diceRolls;
 };
