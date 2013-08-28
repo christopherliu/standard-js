@@ -152,7 +152,7 @@ standard_library.utilities.HTML.decodeEntities = (function() {
      */
 
     return decodeHTMLEntities;
-});
+})();
 
 /**
  * Converts a string to a slug that can be part of a URL. For example, "Tim's

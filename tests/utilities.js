@@ -313,6 +313,11 @@ test("Not a string", function() {
 
 // HTML
 module("standard_library.utilities.HTML");
+test("decodeEntities", function() {
+    var result = standard_library.utilities.HTML.decodeEntities("abc");
+    ok(result === "abc", "decodeEntities turns abc into " + result);
+});
+
 
 // MISC
 module("standard_library.utilities.Misc");

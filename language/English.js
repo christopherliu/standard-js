@@ -22,11 +22,15 @@ if (!standard_library.language.English)
 standard_library.language.English.conjugateVerb = function(subject, thirdPersonSingular) {"use strict";
     if ( typeof subject !== "string" || typeof thirdPersonSingular !== "string")
         return undefined;
-    if (subject.toLowerCase() === "you" || subject.toLowerCase() === "they" || subject.toLowerCase() === "we" || standard_library.language.English.isPlural(subject)) {
+    if (standard_library.language.English.isPlural(subject)) {
         if (thirdPersonSingular === "is")
             return "are";
         else if (thirdPersonSingular === "does")
             return "do";
+        else if (thirdPersonSingular === "has")
+            return "have";
+        else if (thirdPersonSingular === "goes")
+            return "go";
         else if (standard_library.utilities.StringUtils.endsWith(thirdPersonSingular, "s"))
             return thirdPersonSingular.substring(0, thirdPersonSingular.length - 1);
         else
@@ -40,9 +44,9 @@ standard_library.language.English.conjugateVerb = function(subject, thirdPersonS
  * Checks if the word is plural. Limited to regular plural nouns.
  *
  * @param {String}
- * 			word	The subject of the sentence.
+ * 			subject	The subject of the sentence.
  * @returns {Boolean} True if word is plural, false otherwise.
  */
-standard_library.language.English.isPlural = function(word) {"use strict";
-    return standard_library.utilities.StringUtils.endsWith(word, 's');
+standard_library.language.English.isPlural = function(subject) {"use strict";
+    return subject.toLowerCase() === "you" || subject.toLowerCase() === "they" || subject.toLowerCase() === "we" || standard_library.utilities.StringUtils.endsWith(subject, 's');
 };
