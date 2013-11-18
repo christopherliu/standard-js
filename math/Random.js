@@ -13,7 +13,7 @@ define('standard_library/math/Random', [], function() {"use strict";
          * from 0 (inclusive) to 1 (exclusive).
          * @returns {Number} A random integer from min to max, inclusive
          */
-        "generateRandomInteger" : function(min, max, fnRandom) {"use strict";
+        "generateRandomInteger" : function(min, max, fnRandom) {
             if ( typeof min !== "number" || typeof max !== "number" || (fnRandom && typeof fnRandom !== "function"))
                 throw "Type error";
             else if (max < min)

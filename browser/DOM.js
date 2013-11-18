@@ -14,7 +14,7 @@ define('standard_library/browser/DOM', ['es5-shim/es5-shim'], function() {"use s
          *            element An element as specified in
          *            https://developer.mozilla.org/en-US/docs/Web/API/Element
          */
-        "extractAttributes" : function(element) {"use strict";
+        "extractAttributes" : function(element) {
             var attributes = {};
             if ( element instanceof HTMLElement === false) {
                 return undefined;
@@ -41,7 +41,7 @@ define('standard_library/browser/DOM', ['es5-shim/es5-shim'], function() {"use s
          *            params Key-value representation of all the values to submit
          * in the form. These would be <input> tags in HTML.
          */
-        "postToURL" : function(attributes, params) {"use strict";
+        "postToURL" : function(attributes, params) {
             attributes.method = attributes.method || "post";
             // The rest of this code assumes you are not using a library.
             // It can be made less wordy if you use one.

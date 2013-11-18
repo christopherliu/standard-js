@@ -18,7 +18,7 @@ define('standard_library/utilities/ArrayUtils', [], function() {"use strict";
          * inclusive.
          * @returns {Number} The new length of the array.
          */
-        "remove" : function(array, from, to) {"use strict";
+        "remove" : function(array, from, to) {
             if (!Array.isArray(array) || typeof from !== "number" || (to && typeof to !== "number"))
                 return undefined;
             if ((array.length + from < 0) || (to && array.length + to < 0))
@@ -42,7 +42,7 @@ define('standard_library/utilities/ArrayUtils', [], function() {"use strict";
          * definition.
          * @returns {Array} An array with only unique elements.
          */
-        "unique" : function(array, fnKey) {"use strict";
+        "unique" : function(array, fnKey) {
             var _keys = {};
             if (!Array.isArray(array) || typeof fnKey !== "function")
                 return undefined;
@@ -67,7 +67,7 @@ define('standard_library/utilities/ArrayUtils', [], function() {"use strict";
          *                  must take in a single parameter of an elemnt
          * @returns {T} Anything in the array and matches the first element.
          */
-        "findFirst" : function(array, fnFind) {"use strict";
+        "findFirst" : function(array, fnFind) {
             if (!Array.isArray(array) || typeof fnFind !== "function")
                 return undefined;
             else {
@@ -87,7 +87,7 @@ define('standard_library/utilities/ArrayUtils', [], function() {"use strict";
          *          ar  An array object of numbers.
          * @returns {Number} the sum of the array elements
          */
-        "sum" : function(ar) {"use strict";
+        "sum" : function(ar) {
             if (!Array.isArray(ar))
                 return undefined;
             else {

@@ -9,7 +9,7 @@ define('standard_library/core/Publisher', [], function() {"use strict";
      * private access to notifySubscribers.
      * @example See tests/core.js for tests
      */
-    return function Publisher(publishingMethodAccessor) {"use strict";
+    return function Publisher(publishingMethodAccessor) {
         // ------------------------------------------------------------------------
         // Private variables
         var subscribers = [];

@@ -24,7 +24,7 @@ define('standard_library/utilities/HTML', ['standard_library/utilities/StringUti
          *          queryString The string which is to be broken.
          * @returns {Object} Object of the string after it has been broken up.
          */
-        "breakQueryStringIntoParameters" : function(queryString) {"use strict";
+        "breakQueryStringIntoParameters" : function(queryString) {
             // TODO Maybe update with better version.
             // http://stackoverflow.com/q/901115/40352
             // Regex would be slower but this method needs to fix +.

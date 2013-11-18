@@ -133,7 +133,7 @@ define('standard_library/gaming/Dice', ['standard_library/core/Publisher', 'stan
          * @returns {Dice.DiceRollCollection} An array of DiceRolls, with
          * additional methods getValue and forceValue.
          */
-        "rollDice" : function(numDice, sides, randomizer) {"use strict";
+        "rollDice" : function(numDice, sides, randomizer) {
             if ( typeof numDice !== "number" || typeof sides !== "number" || (randomizer && typeof randomizer !== "function" && typeof randomizer !== "number"))
                 throw new Error("numDice and sides should be numbers, randomizer should be seed number or function.");
 

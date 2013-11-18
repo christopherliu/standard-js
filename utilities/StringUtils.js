@@ -11,7 +11,7 @@
          *          prefix  The substring to check in the string.
          * @returns {Boolean} True if word starts with prefix, false otherwise.
          */
-        "startsWith" : function(word, prefix) {"use strict";
+        "startsWith" : function(word, prefix) {
             if ( typeof word !== "string" || typeof prefix !== "string")
                 return undefined;
             else
@@ -26,7 +26,7 @@
          * otherwise.
          *
          */
-        "endsWith" : function(word, suffix) {"use strict";
+        "endsWith" : function(word, suffix) {
             if ( typeof word !== "string" || typeof suffix !== "string")
                 return undefined;
             else
@@ -39,7 +39,7 @@
          *          pattern The substring to check in the string.
          * @returns {Boolean} True if word ends with str, false otherwise.
          */
-        "endsWithRegex" : function(word, pattern) {"use strict";
+        "endsWithRegex" : function(word, pattern) {
             if ( typeof word !== "string" || typeof pattern !== "string")
                 return undefined;
             else
@@ -63,7 +63,7 @@
          * @param {Regex}
          *            split     The regexp instructions to split the string with.
          */
-        "splitWithoutCapture" : function(str, split) {"use strict";
+        "splitWithoutCapture" : function(str, split) {
             var flags = (split.global ? "g" : "") + (split.ignoreCase ? "i" : "") + (split.multiline ? "m" : "");
             var newRegExp = new RegExp(split.source.replace(/\(([^?][\s\S]*?)\)/g, "(?:$1)"), flags);
             return str.split(newRegExp);
@@ -87,7 +87,7 @@
          *            str       The string in unicode format.
          * @returns {ASCIIFriendlyString} The string in ASCII format.
          */
-        "makeStringASCIIInvariant" : function(str) {"use strict";
+        "makeStringASCIIInvariant" : function(str) {
             if ( typeof str !== "string")
                 return undefined;
             else

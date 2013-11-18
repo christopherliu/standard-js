@@ -22,9 +22,9 @@ btn.simulateClick();
  </code>
  */
 //@formatter:on
-    return function _Event(eventName, attachTo) {
-        if (!(this instanceof _Event)) {
-            return new _Event(eventName, attachTo);
+    return function Event(eventName, attachTo) {
+        if (!(this instanceof Event)) {
+            return new Event(eventName, attachTo);
         }
         var _eventHandler = null;
         var _isLoggingEnabled = ( typeof DEBUG !== 'undefined');
