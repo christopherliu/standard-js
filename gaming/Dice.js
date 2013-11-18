@@ -27,31 +27,12 @@ define('standard_library/gaming/Dice', ['standard_library/core/Publisher', 'stan
             var addSubscriber = this.addSubscriber;
             var value;
 
-<<<<<<< HEAD
             // -----------------------------------------------------------------
             //Public state
             // Has someone seen the die yet?
             this.hasBeenSeen = false;
             this.isForced = false;
             this.timesRolled = 0;
-=======
-/**
- * @class A single roll of the die.
- * @constructor
- * @param {Number}
- * 			sides		An integer number of sides the dice has.
- * @param {Function}
- *			fnRandom 	A replacement for the random function,
- * 						if we choose to seed.
- *
- * Events: roll(ed), force(d), seen
- */
-standard_library.gaming.Dice.DiceRoll = function(sides, fnRandom) {
-    var self = this;
-    var value;
-    var publisher = {};
-    standard_library.core.Publisher.call(this, publisher);
->>>>>>> 814fb27aa6bfde83d78e0f750e93aceb814bbba0
 
             // -----------------------------------------------------------------
             //Private functions
