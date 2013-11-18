@@ -36,9 +36,10 @@ test("No dice, no random function given", function() {
 });
 
 test("No sides, no random function given", function() {
-    die = rollDice(1, 0);
-    result = die.getValue();
-    ok(result === undefined, "One 0-sided die generated " + result);
+    throws(function() {
+        die = rollDice(1, 0);
+        result = die.getValue();
+    }, "Trying to roll a 0-sided die should throw an exception");
 });
 
 test("Forced value, no random function given", function() {
@@ -49,19 +50,22 @@ test("Forced value, no random function given", function() {
 });
 
 test("numDice is not a number", function() {
-    result = rollDice("a", 6);
-    ok(result === undefined, "numDice is 'a' results in " + result);
+    throws(function() {
+        result = rollDice("a", 6);
+    }, "rollDice() with numDice == 'a' should throw exception");
 });
 
 test("sides is not a number", function() {
-    result = rollDice(1, "a");
-    ok(result === undefined, "sides is 'a' results in " + result);
+    throws(function() {
+        result = rollDice(1, "a");
+    }, "rollDice() with sides == 'a' should throw exception");
 });
 
-test("fnRandom is not a function", function() {
-    func = 4;
-    result = rollDice(1, 6, func);
-    ok(result === undefined, "Incorrect random generator fnRandom results in " + result);
+test("fnRandom is not a number or function", function() {
+    throws(function() {
+        func = "hello";
+        result = rollDice(1, 6, func);
+    }, "rollDice() with randomizer == 'hello' should throw exception");
 });
 
 // TODO addSubscriber (this is more of an integration test with Publisher)

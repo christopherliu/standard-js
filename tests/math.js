@@ -26,22 +26,30 @@ test("generateRandomInteger(): Random function given", function() {
 });
 
 test("generateRandomInteger(): Lower max than min, no random function", function() {
-    result = generateRandomInteger(15, 10);
-    ok(result === undefined, "Between 15 and 10, generated " + result);
+    var result = null;
+    throws(function() {
+        result = generateRandomInteger(15, 10);
+    }, "Between 15 and 10 should generate exception: " + result);
 });
 
 test("generateRandomInteger(): Min is not a number, no random function", function() {
-    result = generateRandomInteger("a", 10);
-    ok(result === undefined, "Between a and 10, generated " + result);
+    var result = null;
+    throws(function() {
+        result = generateRandomInteger("a", 10);
+    }, "Between a and 10 should generate exception: " + result);
 });
 
 test("generateRandomInteger(): Max is not a number, no random function", function() {
-    result = generateRandomInteger(10, "a");
-    ok(result === undefined, "Between 10 and a, generated " + result);
+    var result = null;
+    throws(function() {
+        result = generateRandomInteger(10, "a");
+    }, "Between 10 and 1 should generate exception: " + result);
 });
 
 test("generateRandomInteger(): fnRandom is not a random function", function() {
-    func = 4;
-    result = generateRandomInteger(4, 5, func);
-    ok(result === undefined, "Incorrect random generator fnRandom" + result);
-}); 
+    var result = null;
+    throws(function() {
+        func = 4;
+        result = generateRandomInteger(4, 5, func);
+    }, "Incorrect random generator fnRandom should generate exception: " + result);
+});
