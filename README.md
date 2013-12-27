@@ -21,7 +21,8 @@ Well, with [CommonJS](http://www.commonjs.org/) and [JavaScript 1.6](http://en.w
 
 We do *not* want to replace:
 
- * jQuery/Dojo/ExtJS (just get jQuery/Dojo/ExtJS)
+ * jQuery/Dojo/ExtJS/Underscore (just get jQuery/Dojo/ExtJS/Underscore)
+ * ECMAScript (use polyfills)
  * HTML5 ([Modernizr](http://modernizr.com/), [CSS3PIE](http://css3pie.com) and other libraries can help here).
  
 If something is available in one of the major libraries, it's probably best to use it there unless it's something that was used to patch a weakness in JavaScript (some of the jQuery functionality falls into this category).
@@ -41,7 +42,7 @@ Standard-js is built to be modular - use what you need, throw out what you don't
  * etc/ - additional functionality
  
 ## Notes
-Addresses with ECMAScript may be blocked by some servers (Apache on Site5 is the only known example). For this reason, we include ES.v5 as an alternative spelling.
+Addresses with ECMAScript may be blocked by some servers (Apache on Site5 is the only known example). For this reason, use ES.v5 as an alternative spelling. (Note: this is no longer relevant)
 
 ### Other useful libraries
 
