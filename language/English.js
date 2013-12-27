@@ -57,6 +57,13 @@ define('standard_library/language/English', ['standard_library/utilities/StringU
          */
         "isPlural" : function(subject) {
             return subject.toLowerCase() === "you" || subject.toLowerCase() === "they" || subject.toLowerCase() === "we" || StringUtils.endsWith(subject, 's');
+        },
+
+        "pluralize" : function(singularNoun, number) {
+            if (number !== 1)
+                return number + " " + singularNoun + "s";
+            else
+                return number + " " + singularNoun;
         }
     };
     return _this;
