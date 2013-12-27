@@ -77,6 +77,7 @@ define('standard_library/core/Publisher', [], function() {"use strict";
                     return;
                 }
             }
+            debug(['removeSubscriber'], "Warning: No subscriber was removed.");
         };
     };
-}); 
+});
