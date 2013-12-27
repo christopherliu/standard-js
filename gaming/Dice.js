@@ -16,7 +16,7 @@ define('standard_library/gaming/Dice', ['standard_library/core/Publisher', 'stan
          *          fnRandom    A replacement for the random function,
          *                      if we choose to seed.
          *
-         * Events: roll(ed), force(d), seen
+         * Events: reroll(ed), roll(ed), force(d), seen
          */
         "DiceRoll" : function(sides, fnRandom) {
             // -----------------------------------------------------------------
@@ -68,13 +68,13 @@ define('standard_library/gaming/Dice', ['standard_library/core/Publisher', 'stan
              */
             this.addSubscriber = function(subscriber) {
                 // TODO this shouldn't notify all old subscribers just because a
-                // new
-                // one
-                addSubscriber(subscriber);
+                // new one
+                var sub = addSubscriber(subscriber);
                 publisher.notifySubscribers({
                     "name" : "roll",
                     "value" : value
                 });
+                return sub;
             };
             /**
              * Force the dice to take a new value.
@@ -116,6 +116,7 @@ define('standard_library/gaming/Dice', ['standard_library/core/Publisher', 'stan
         //standard_library.gaming.Dice.DiceRoll
 
         /**
+         * Rolls a number of dice at once.
          * @example To roll 2d6, reroll one die, and get the end result.
          * <code>
          * var myDie = Dice.rollDice(2,6);
@@ -148,9 +149,18 @@ define('standard_library/gaming/Dice', ['standard_library/core/Publisher', 'stan
             // -----------------------------------------------------------------
             //Public functions
             /**
+             * Adds a new die with the same number of sides and randomizer
+             * function as the previous dice.
+             * @returns {gaming.Dice.DiceRoll}
+             */
+            diceRolls.addDie = function() {
+                var newRoll = new _this.DiceRoll(sides, fnRandom);
+                diceRolls.push(newRoll);
+                return newRoll;
+            };
+            /**
              * @returns {Number} The sum of the dice rolls if there is not a
-             * forced
-             * value.
+             * forced value.
              */
             diceRolls.getValue = function() {
                 return overrideValue || ArrayUtils.sum(diceRolls.map(function(roll) {
